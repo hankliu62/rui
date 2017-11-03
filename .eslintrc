@@ -1,0 +1,104 @@
+{
+  // 使用第三方airbnb开发配置合集
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "valid-jsdoc": "off", // valid document it
+    "default-case": "off",
+    "no-fallthrough": "off",
+    "no-return-assign": "off",
+    "consistent-return": "off",
+    "no-restricted-syntax": ["off", "iterators/generators"],
+    "class-methods-use-this": "off",
+    // Disable comma-dangle unless need to support it
+    "comma-dangle": "off",
+    "func-names": "off",
+    "id-length": "off",
+    "no-param-reassign": "off",
+    "arrow-body-style": "off",
+    "no-loop-func": "off",
+    "global-require": "off",
+    "no-self-compare": "off",
+    "guard-for-in": "warn",
+
+    // error rules
+    "linebreak-style": ["error", "unix"],
+    "semi": ["error", "always"],
+    "max-len": ["error", 250, 2],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-mixed-operators": ["error", {
+      "groups": [
+        ["+", "-", "*", "/", "%", "**"],
+        ["&", "|", "^", "~", "<<", ">>", ">>>"],
+        ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+        ["&&", "||"],
+        ["in", "instanceof"]
+      ],
+      "allowSamePrecedence": true
+      }],
+
+    // https://github.com/benmosher/eslint-plugin-import: import rules
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": ["error", { "commonjs": false, "ignore": ["systemConfig", "^@/.+"] }],
+    "import/no-dynamic-require": "off",
+    "import/extensions": "warn",
+
+    // https://github.com/yannickcr/eslint-plugin-react: react rules
+    "react/no-did-mount-set-state": "off",
+    "react/jsx-no-bind": "off",
+    "react/prop-types": "off",
+    "react/no-array-index-key": "off",
+    "react/sort-comp": ["warn", {
+      "order": [
+        "static-methods",
+        "lifecycle",
+        "/^fetch.+$/",
+        "/^handle.+$/",
+        "everything-else",
+        "render"
+      ]
+    }],
+    "react/forbid-prop-types": ["off", { "forbid": ["array"] }],
+    "react/require-default-props": "off",
+    "react/prefer-stateless-function": ["off", { "ignorePureComponents": true }],
+
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y: jsx-a11y rules
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/alt-text": "off",
+    "jsx-a11y/anchor-has-content": "off", // a 标签必须有子元素
+    "jsx-a11y/media-has-caption": "off" //audio, video元素必须包含track options
+  },
+  // 当访问未定义的变量时，no-undef 规则将发出警告
+  // 指定脚本的运行环境。每种环境都有一组特定的预定义全局变量
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  // 指定校验的ECMAScript的版本及特性
+  "parserOptions": {
+    "ecmaVersion": 7, // ECMAScript版本，7为ES7
+    "sourceType": "module", //默认script，如果代码是ECMAScript模块，设置为module
+    "ecmaFeatures": { // 使用额外的语言特性
+      "jsx": true // 启用JSX
+    },
+    "experimentalObjectRestSpread": true
+  },
+  // eslint-config-airbnb包括了以下3个插件
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  // 当访问未定义的变量时，no-undef 规则将发出警告
+  // 脚本在执行期间访问的额外的全局变量
+  "globals": {
+    "localStorage": true,
+    "location": true,
+    "arguments": true
+  }
+}
