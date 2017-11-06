@@ -1,16 +1,21 @@
 @import '../../less/variables';
 @import '../../less/mixins/clearfix';
 
+@header-bg-color: @white;
+@header-shadow-color: #f0f1f2;
+@header-logo-color: @theme-color;
+
 .hlrui-header {
   .clearfix();
 
-  padding: 10px 20px;
-  background-color: @theme-color;
+  padding: 7px 20px;
+  background-color: @header-bg-color;
+  box-shadow: 0 2px 8px @header-shadow-color;
 
   .logo {
     display: inline-block;
     user-select: none;
-    color: @white;
+    color: @header-logo-color;
 
     .logo-image {
       width: 48px;
@@ -23,7 +28,13 @@
       vertical-align: middle;
       margin-left: 12px;
       width: 160px;
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: @header-logo-color;
     }
   }
 }

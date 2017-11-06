@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const config = require('../../config/config');
 const assetDeps = require('../../config/assets.dependencies');
@@ -80,6 +81,7 @@ const baseConfig = {
       { from: pathsUtils.client('favicons'), to: 'favicons' }
     ]),
     new AddAssetHtmlPlugin(assetHtmlPlugins),
+    // new FaviconsWebpackPlugin(path.resolve(pathsUtils.client('favicons'), '2', '16.png'))
   ]
 };
 

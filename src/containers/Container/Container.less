@@ -1,12 +1,104 @@
 @import '../../less/variables';
 
+@header-link-color: @title;
+@menu-link-color: @white;
+@sidebar-shadow-color: #999;
+
+@sidebar-toggle-color: rgba(0, 0, 0, .3);
+@sidebar-toggle-bg-color: #e6f7ff;
+@sidebar-toggle-border-color: #e6f7ff;
+
+@sidebar-toggle-hover-color: rgba(0, 0, 0, .3);
+@sidebar-toggle-hover-bg-color: #ddd;
+@sidebar-toggle-hover-border-color: #ddd;
+
+@header-height: 62px;
+
 .main-container {
+  position: relative;
+
   .hlrui-header {
+    position: relative;
+
+    .logo {
+      transition: width .5s ease-in-out;
+      white-space: nowrap;
+    }
+
     .header-right {
-      float: right;
+      transition: left .5s ease-in-out;
+      position: absolute;
+      left: 240px;
+      top: 0;
+      bottom: 0;
+      right: 20px;
+      text-align: right;
 
       .hlrui-link {
-        color: @white;
+        color: @header-link-color;
+        font-size: 18px;
+        line-height: @header-height;
+
+        + .hlrui-link {
+          margin-left: 20px;
+        }
+      }
+
+      .btn-sidebar-toggle {
+        @btn-sidebar-toggle-height: 30px;
+
+        font-size: 18px;
+        font-weight: bold;
+        line-height: @btn-sidebar-toggle-height;
+        width: @btn-sidebar-toggle-height;
+        height: @btn-sidebar-toggle-height;
+        border-radius: 50%;
+        position: absolute;
+        left: -@btn-sidebar-toggle-height / 2;
+        top: (@header-height - @btn-sidebar-toggle-height) / 2;
+        cursor: pointer;
+        color: @sidebar-toggle-color;
+        border: 1px solid @sidebar-toggle-border-color;
+        background-color: @sidebar-toggle-bg-color;
+
+        &:hover {
+          color: @sidebar-toggle-hover-color;
+          border-color: @sidebar-toggle-hover-border-color;
+          background-color: @sidebar-toggle-hover-bg-color;
+        }
+      }
+    }
+
+    &.shrink-header {
+      .logo {
+        overflow-x: hidden;
+        width: 60px;
+      }
+
+      .header-right {
+        left: 80px;
+      }
+    }
+  }
+
+  .sidebar {
+    position: absolute;
+    left: 0;
+    top: @header-height;
+    bottom: 0;
+    overflow-y: auto;
+    box-shadow: 2px 2px 8px @sidebar-shadow-color;
+
+    .hlrui-menus {
+      min-height: 100%;
+
+      &.vertical {
+        width: 240px;
+      }
+
+      .menu-link {
+        display: block;
+        height: 100%;
       }
     }
   }

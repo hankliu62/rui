@@ -2,11 +2,18 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import GetRootMenu from './decorators/GetRootMenu';
+
+@GetRootMenu
 class MenuItem extends PureComponent {
+  static contextTypes = {
+    component: PropTypes.any
+  }
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    key: PropTypes.string,
+    ukey: PropTypes.string,
     onSelect: PropTypes.func
   }
 
@@ -14,24 +21,38 @@ class MenuItem extends PureComponent {
     onSelect: () => {}
   }
 
+  constructor(props) {
+    super(props);
+
+    this.getRootMenu = this.getRootMenu.bind(this);
+  }
+
   handleItemClick = () => {
-    const { key, disabled } = this.props;
+    const { ukey, disabled } = this.props;
 
     if (disabled) {
       return;
     }
 
-    this.props.onSelect(key);
+    this.props.onSelect(ukey);
+  }
+
+  isActived = () => {
+    const { ukey } = this.props;
+    const rootMenu = this.getRootMenu() || { state: { activedKey: '' } };
+    return rootMenu.state.activedKey === ukey;
   }
 
   render() {
-    const { className, disabled, children, key } = this.props;
+    const { className, disabled, children, ukey } = this.props;
 
     return (
       <div
-        key={key}
+        key={ukey}
         className={classNames('hlrui-menu-item', {
-          [className]: className, disabled
+          [className]: className,
+          activated: this.isActived(),
+          disabled
         })}
         onClick={this.handleItemClick}
       >
