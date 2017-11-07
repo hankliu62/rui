@@ -1,0 +1,89 @@
+@import '../variables';
+
+@btn-themes: primary tblue tred tyellow tgreen;
+@btn-theme-colors: @white @white @white @white @white;
+@btn-theme-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320;
+@btn-theme-border-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320;
+@btn-theme-focus-bg-colors: #1ca59c #53bee6 #dd4d42 #e58e02 #72c31b;
+@btn-theme-shadow-colors: rgba(28, 165, 156, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5);
+
+@themes-length: length(@btn-themes);
+
+@hlrui-btn-default-color: #c2c2c2;
+@hlrui-btn-default-bg-color: @white;
+@hlrui-btn-default-border-color: #e2e2e4;
+
+.hlrui-btn {
+  cursor: pointer;
+  padding: 7px 22px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 3px;
+  user-select: none;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  &.hlrui-btn-default {
+    color: @hlrui-btn-default-color;
+    border-color: @hlrui-btn-default-border-color;
+    background-color: @hlrui-btn-default-bg-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: @hlrui-btn-default-color;
+    }
+  }
+
+  .themesLoop(@n, @i: 1) when (@i =< @n) {
+    @theme: extract(@btn-themes, @i);
+
+    @btn-theme-color: extract(@btn-theme-colors, @i);
+    @btn-theme-bg-color: extract(@btn-theme-bg-colors, @i);
+    @btn-theme-border-color: extract(@btn-theme-border-colors, @i);
+    @btn-theme-focus-bg-color: extract(@btn-theme-focus-bg-colors, @i);
+    @btn-theme-shadow-color: extract(@btn-theme-shadow-colors, @i);
+
+    &.hlrui-btn-@{theme} {
+      color: @btn-theme-color;
+      border-color: @btn-theme-border-color;
+      background-color: @btn-theme-bg-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: @btn-theme-color;
+        background-color: @btn-theme-focus-bg-color;
+      }
+
+      &:active {
+        box-shadow: 0 0 8px @btn-theme-shadow-color;
+      }
+    }
+
+    .themesLoop(@n, (@i + 1));
+  }
+
+  .themesLoop(@themes-length);
+
+  &.hlrui-btn-sm {
+    padding: 6px 12px;
+  }
+
+  &.disabled {
+    opacity: .7;
+    pointer-events: none;
+  }
+}
