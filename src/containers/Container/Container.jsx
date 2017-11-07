@@ -6,6 +6,8 @@ import LogoImage from '@/images/logo.png';
 import Language from '../../libs/Language';
 import { Menu, SubMenu, MenuItem } from '../../components/Menu';
 import { Header } from '../../components/Header';
+import { Pagination } from '../../components/Pagination';
+import { Breadcrumb } from '../../components/Breadcrumb';
 import * as CONSTANTS from '../../constants/Constants';
 
 import './Container.less';
@@ -21,7 +23,10 @@ class Container extends Component {
     this.state = {
       activatedNavKey: '',
       openedNavKeys: [],
-      sidebarExpanded: false
+      sidebarExpanded: false,
+
+      pageSize: 10,
+      currentPage: 1
     };
 
     this.navs = CONSTANTS.MENUS;
@@ -100,6 +105,16 @@ class Container extends Component {
         </div>
         <div className="page-container">
           { children && children }
+
+          <Breadcrumb menus={['首页', '基本', 'Color 颜色']} />
+
+          <Pagination
+            totalRows={111}
+            pageSize={this.state.pageSize}
+            currentPage={this.state.currentPage}
+            onChangePage={currentPage => this.setState({ currentPage })}
+            onChangeSize={pageSize => this.setState({ currentPage: 1, pageSize })}
+          />
         </div>
       </div>
     );

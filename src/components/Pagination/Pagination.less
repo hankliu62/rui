@@ -1,0 +1,139 @@
+@hlrui-pagination-color: #666;
+@hlrui-pagination-disabled-color: #ccc;
+@hlrui-pagination-number-color: #f36b5f;
+@hlrui-pagination-btn-color: #666;
+@hlrui-pagination-btn-bg-color: #fff;
+@hlrui-pagination-btn-hover-color: #fff;
+@hlrui-pagination-btn-hover-bg-color: #f36b5f;
+
+.hlrui-pagination {
+  font-size: 0;
+
+  .hlrui-pagination-statistics {
+    font-size: 14px;
+    color: @hlrui-pagination-color;
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+    vertical-align: middle;
+
+    .statistics-number {
+      color: @hlrui-pagination-number-color;
+    }
+
+    .pagesize-selector {
+      margin: 0 5px;
+      width: 100px;
+    }
+  }
+
+  .hlrui-pagination-content {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+    vertical-align: middle;
+
+    .hlrui-pagination-wrap {
+      font-size: 0;
+      display: inline-block;
+      margin: 0;
+      vertical-align: middle;
+
+      .btn-pagination {
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+        color: @hlrui-pagination-color;
+        vertical-align: middle;
+
+        .w-icon {
+          font-size: 18px;
+          line-height: 24px;
+        }
+
+        &.btn-index {
+          cursor: pointer;
+          color: @hlrui-pagination-btn-color;
+
+          &.active,
+          &:hover {
+            border-radius: 12px;
+            background-color: @hlrui-pagination-btn-hover-bg-color;
+            color: @hlrui-pagination-btn-hover-color;
+          }
+
+          &.disabled {
+            cursor: default;
+
+            &.active,
+            &:hover {
+              border-radius: 0;
+              background-color: @hlrui-pagination-btn-bg-color;
+              color: @hlrui-pagination-color;
+              cursor: default;
+            }
+          }
+        }
+
+        &.btn-previous,
+        &.btn-next {
+          cursor: pointer;
+
+          &.disabled {
+            cursor: default;
+          }
+        }
+
+        &.btn-page-expand {
+          color: @hlrui-pagination-color;
+          cursor: default;
+          pointer-events: none;
+        }
+
+        &.disabled {
+          color: @hlrui-pagination-disabled-color;
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .hlrui-pagination-quick-wrap {
+      display: inline-block;
+      vertical-align: middle;
+
+      .page-form-control {
+        vertical-align: top;
+        width: 40px;
+        margin-left: 30px;
+        padding: 0;
+        text-align: center;
+      }
+
+      .hlrui-btn-quick {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  &.no-pagesize-selector {
+    text-align: right;
+
+    .hlrui-pagination-statistics {
+      width: auto;
+      text-align: right;
+      line-height: 36px;
+    }
+
+    .hlrui-pagination-content {
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import '../variables';
+
+@hlrui-form-control-color: @form-control-color;
+@hlrui-form-control-bg-color: @form-control-bg-color;
+@hlrui-form-control-border-color: @form-control-border-color;
+@hlrui-form-control-placeholder-color: @form-control-placeholder-color;
+
+@hlrui-form-control-focus-bg-color: @form-control-focus-bg-color;
+@hlrui-form-control-focus-border-color: @form-control-focus-border-color;
+@hlrui-form-control-focus-shadow-color: @form-control-focus-shadow-color;
+
+@hlrui-form-control-disabled-color: @form-control-disabled-color;
+@hlrui-form-control-disabled-bg-color: @form-control-disabled-bg-color;
+@hlrui-form-control-disabled-border-color: @form-control-disabled-border-color;
+
+@hlrui-input-group-addon-color: #555;
+@hlrui-input-group-addon-bg-color: #eee;
+@hlrui-input-group-addon-border-color: @hlrui-form-control-border-color;
+
+@hlrui-form-control-feedback-color: #555;
+
+.hlrui-form-control {
+  padding: 0 10px;
+  width: @form-control-width;
+  height: @form-control-height;
+  color: @hlrui-form-control-color;
+  border: 1px solid @hlrui-form-control-border-color;
+  background-color: @hlrui-form-control-bg-color;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  box-shadow: none;
+  vertical-align: middle;
+
+  &:focus {
+    border-color: @hlrui-form-control-focus-border-color;
+    background-color: @hlrui-form-control-focus-bg-color;
+    box-shadow: 0 3px 10px 0 @hlrui-form-control-focus-shadow-color;
+    outline: 0;
+  }
+
+  &.error {
+    border-color: @error-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
+    color: @hlrui-form-control-disabled-color;
+    background-color: @hlrui-form-control-disabled-bg-color;
+    border: 1px solid @hlrui-form-control-disabled-border-color;
+  }
+
+  &::-webkit-input-placeholder {
+    color: @hlrui-form-control-placeholder-color;
+    user-select: none;
+  }
+
+  &::-moz-placeholder {
+    color: @hlrui-form-control-placeholder-color;
+    user-select: none;
+  }
+
+  &:-moz-placeholder {
+    color: @hlrui-form-control-placeholder-color;
+    user-select: none;
+  }
+
+  &:-ms-input-placeholder {
+    color: @hlrui-form-control-placeholder-color;
+    user-select: none;
+  }
+
+  + .hlrui-form-control-feedback {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.hlrui-input-group-addon {
+  display: table-cell;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 0 12px;
+  height: @form-control-height - 2px;
+  color: @hlrui-input-group-addon-color;
+  text-align: center;
+  background-color: @hlrui-input-group-addon-bg-color;
+  border: 1px solid @hlrui-input-group-addon-border-color;
+  border-radius: 4px;
+
+  &:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &:last-child {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.hlrui-form-control-feedback {
+  display: inline-block;
+  color: @hlrui-form-control-feedback-color;
+  height: @form-control-height;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: @form-control-height;
+  padding: 0 5px;
+}
+

@@ -1,0 +1,38 @@
+@hlrui-breadcrumb-color: #333;
+@hlrui-breadcrumb-bg-color: #fff;
+@hlrui-breadcrumb-link-color: #27ae60;
+@hlrui-breadcrumb-link-hover-color: #1ca59e;
+
+.hlrui-breadcrumb {
+  color: @hlrui-breadcrumb-color;
+  font-size: 14px;
+  height: 52px;
+  line-height: 52px;
+  padding-left: 30px;
+  background-color: @hlrui-breadcrumb-bg-color;
+
+  .hlrui-breadcrumb-item {
+    display: inline-block;
+
+    .hlrui-breadcrumb-item-link {
+      color: @hlrui-breadcrumb-link-color;
+
+      &:active {
+        color: @hlrui-breadcrumb-link-color;
+      }
+
+      &:hover {
+        color: @hlrui-breadcrumb-link-hover-color;
+      }
+    }
+
+    .hlrui-breadcrumb-item-title {
+      display: inline-block;
+    }
+
+    .hlrui-breadcrumb-item-separator {
+      display: inline-block;
+      padding: 0 5px;
+    }
+  }
+}
