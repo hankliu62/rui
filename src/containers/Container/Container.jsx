@@ -8,6 +8,7 @@ import { Menu, SubMenu, MenuItem } from '../../components/Menu';
 import { Header } from '../../components/Header';
 import { Pagination } from '../../components/Pagination';
 import { Breadcrumb } from '../../components/Breadcrumb';
+import { Dropzone } from '../../components/Dropzone';
 import * as CONSTANTS from '../../constants/Constants';
 
 import './Container.less';
@@ -107,6 +108,8 @@ class Container extends Component {
           { children && children }
 
           <Breadcrumb menus={['首页', '基本', 'Color 颜色']} />
+
+          <Dropzone limit="350" />
 
           <Pagination
             totalRows={111}
