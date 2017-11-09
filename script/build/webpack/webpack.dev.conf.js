@@ -15,7 +15,7 @@ const HappyPackPluginDecorator = require('../plugins/happypack-plugins');
 const pathsUtils = config.utils_paths;
 // const happyThreadPool = HappyPackPlugin.ThreadPool({ size: os.cpus().length });
 
-webpackConfig.devtool = 'eval';
+webpackConfig.devtool = 'source-map';
 
 // add hot-reload related code to entry chunks
 const polyfill = 'eventsource-polyfill'; // 兼容ie

@@ -19,6 +19,7 @@
     "no-loop-func": "off",
     "global-require": "off",
     "no-self-compare": "off",
+    "no-await-in-loop": "off",
     "guard-for-in": "warn",
 
     // error rules

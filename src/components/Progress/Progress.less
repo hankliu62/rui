@@ -1,0 +1,48 @@
+@import '../../less/variables';
+@import '../../less/mixins/clearfix';
+
+@hlrui-progress-bg-color: #f5f5f5;
+@hlrui-progress-shadow-color: rgba(0, 0, 0, .1);
+@hlrui-progress-percent-shadow-color: rgba(0, 0, 0, .15);
+@hlrui-progress-percent-bg-color: @theme-color;
+
+@progress-themes: primary aquablue tred tyellow tgreen;
+@progress-theme-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320;
+
+@themes-length: length(@progress-themes);
+
+.hlrui-progress {
+  height: 20px;
+  overflow: hidden;
+
+  .hlrui-progress-bar {
+    .clearfix();
+
+    background-color: @hlrui-progress-bg-color;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px @hlrui-progress-shadow-color;
+    height: 100%;
+
+    .hlrui-progress-percent {
+      width: 0;
+      transition: width .3s ease-in-out;
+      float: left;
+      height: 100%;
+      background-color: @hlrui-progress-percent-bg-color;
+      box-shadow: inset 0 -1px 0 @hlrui-progress-percent-shadow-color;
+    }
+  }
+
+  .themesLoop(@n, @i: 1) when (@i =< @n) {
+    @theme: extract(@btn-themes, @i);
+    @progress-theme-bg-color: extract(@progress-theme-bg-colors, @i);
+
+    &.hlrui-progress-percent {
+      background-color: @progress-theme-bg-color;
+    }
+
+    .themesLoop(@n, (@i + 1));
+  }
+
+  .themesLoop(@themes-length);
+}

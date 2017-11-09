@@ -148,14 +148,16 @@ class Pagination extends Component {
       }
 
       const pageNumbers = this.getPageNumbers();
+      const startIndex = (currentPage * pageSize) + 1;
+      const endIndex = (currentPage + 1) * pageSize > totalRows ? totalRows : (currentPage + 1) * pageSize;
 
       return (
         <div className={classNames('hlrui-pagination', { 'no-pagesize-selector': !showPageSize })}>
           <div className="hlrui-pagination-statistics">
             <span className={classNames('statistics-text', { hidden: !showPageSize })}>显示第</span>
-            <span className={classNames('statistics-number', { hidden: !showPageSize })}> 1 </span>
+            <span className={classNames('statistics-number', { hidden: !showPageSize })}> { startIndex } </span>
             <span className={classNames('statistics-text', { hidden: !showPageSize })}>到第</span>
-            <span className={classNames('statistics-number', { hidden: !showPageSize })}> { pageSize } </span>
+            <span className={classNames('statistics-number', { hidden: !showPageSize })}> { endIndex } </span>
             <span className={classNames('statistics-text', { hidden: !showPageSize })}>条记录，总</span>
             <span className="statistics-text">共</span>
             <span className="statistics-number"> { totalRows } </span>
@@ -177,7 +179,7 @@ class Pagination extends Component {
                 })}
                 onClick={this.handleClickPrevious}
               >
-                <span className="fa w-icon w-icon-d-arrow-left" />
+                <span className="fa fa-angle-left" />
               </li>
               {
                 pageNumbers.map((item, index) => (
@@ -196,7 +198,7 @@ class Pagination extends Component {
                 })}
                 onClick={this.handleClickNext}
               >
-                <span className="fa w-icon w-icon-d-arrow-right" />
+                <span className="fa fa-angle-right" />
               </li>
             </ul>
             {

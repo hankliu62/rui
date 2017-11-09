@@ -6,6 +6,11 @@
 @hlrui-dropzone-desc-color: #ccc;
 @hlrui-dropzone-border-color: #e6e6e6;
 @hlrui-dropzone-selected-info-color: #666;
+@hlrui-dropzone-selected-image-operate-bar-bg-color: rgba(0, 0, 0, .5);
+@hlrui-dropzone-upload-fail-bar-color: @white;
+@hlrui-dropzone-upload-fail-bar-bg-color: #f43838;
+@hlrui-dropzone-upload-success-bar-color: @white;
+@hlrui-dropzone-upload-success-bar-bg-color: #0095ff;
 
 .hlrui-dropzone {
   background-color: @hlrui-dropzone-bg-color;
@@ -55,6 +60,134 @@
         .hlrui-btn {
           + .hlrui-btn {
             margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .dropzone-preview-wrap {
+      padding: 20px;
+
+      .selected-image-wrap {
+        display: inline-block;
+        margin-bottom: 10px;
+        position: relative;
+
+        + .selected-image-wrap {
+          margin-left: 8px;
+        }
+
+        .selected-image-operate-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 0;
+          transition: height .5s ease-in-out;
+          background-color: @hlrui-dropzone-selected-image-operate-bar-bg-color;
+          overflow: hidden;
+          text-align: right;
+
+          .operate-item {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+            background-image: url('./images/img-dropzone-operate.png');
+            background-repeat: no-repeat;
+            margin: 5px 1px 1px;
+            cursor: pointer;
+
+            &.operate-remove {
+              background-position: -48px -24px;
+
+              &:hover {
+                background-position: -48px 0;
+              }
+            }
+
+            &.operate-rotate-right {
+              background-position: -24px -24px;
+
+              &:hover {
+                background-position: -24px 0;
+              }
+            }
+
+            &.operate-rotate-left {
+              background-position: 0 -24px;
+
+              &:hover {
+                background-position: 0 0;
+              }
+            }
+          }
+        }
+
+        .hlrui-progress {
+          position: absolute;
+          top: 72%;
+          left: 0;
+          right: 0;
+          z-index: 1;
+        }
+
+        .hlrui-upload-fail-bar {
+          background-color: @hlrui-dropzone-upload-fail-bar-bg-color;
+          color: @hlrui-dropzone-upload-fail-bar-color;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          height: 28px;
+          line-height: 28px;
+          width: 100%;
+          font-size: 12px;
+          text-align: center;
+          overflow: hidden;
+        }
+
+        .hlrui-upload-success-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+
+          &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            border-width: 20px;
+            border-color: transparent @hlrui-dropzone-upload-success-bar-bg-color @hlrui-dropzone-upload-success-bar-bg-color transparent;
+            border-style: solid;
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            right: 8px;
+            bottom: 8px;
+            border-width: 0 2px 2px 0;
+            border-color: @hlrui-dropzone-upload-success-bar-color;
+            border-style: solid;
+            height: 15px;
+            width: 8px;
+            transform: rotate(33deg);
+          }
+        }
+
+        &.unupload-image-wrap {
+          &:hover {
+            .selected-image-operate-bar {
+              height: 30px;
+              z-index: 1;
+            }
           }
         }
       }
