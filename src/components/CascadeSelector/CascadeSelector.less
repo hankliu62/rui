@@ -1,0 +1,166 @@
+@import '../../less/mixins/text-ellipsis';
+@import '../../less/variables';
+
+@hlrui-selector-color:  @form-control-color;
+@hlrui-selector-bg-color:  @form-control-bg-color;
+@hlrui-selector-border-color:  @form-control-border-color;
+@hlrui-selector-placeholder-color: @form-control-placeholder-color;
+
+@hlrui-selector-focus-color:  @form-control-color;
+@hlrui-selector-focus-bg-color:  @form-control-focus-bg-color;
+@hlrui-selector-focus-border-color:  @form-control-focus-border-color;
+@hlrui-selector-focus-placeholder-color: @form-control-placeholder-color;
+@hlrui-selector-focus-shadow-color: @form-control-focus-shadow-color;
+
+@hlrui-selector-disabled-color: @form-control-disabled-color;
+@hlrui-selector-disabled-bg-color: @form-control-disabled-bg-color;
+@hlrui-selector-disabled-border-color: @form-control-disabled-border-color;
+
+@hlrui-selector-dropdown-color: #666;
+@hlrui-selector-dropdown-bg-color: #fff;
+@hlrui-selector-dropdown-border-color: #ccc;
+@hlrui-selector-dropdown-hover-bg-color: #f0f0f0;
+
+@hlrui-selector-dropdown-selected-color: #666;
+@hlrui-selector-dropdown-selected-bg-color: #f0f0f0;
+
+.hlrui-cascade-selector {
+  display: inline-block;
+  width: @form-control-width;
+  height: @form-control-height;
+  color: @hlrui-selector-color;
+  border: 1px solid @hlrui-selector-border-color;
+  background-color: @hlrui-selector-bg-color;
+  border-radius: 3px;
+  padding: 0;
+  font-size: 14px;
+  vertical-align: middle;
+
+  &.placeholder-status {
+    color: @hlrui-selector-placeholder-color;
+  }
+
+  &.focus {
+    color: @hlrui-selector-focus-color;
+    border-color: @hlrui-selector-focus-border-color;
+    background-color: @hlrui-selector-focus-bg-color;
+    box-shadow: 0 3px 10px 0 @hlrui-selector-focus-shadow-color;
+
+    &.placeholder-status {
+      color: @hlrui-selector-focus-placeholder-color;
+    }
+  }
+
+  &.error {
+    border-color: @error-color !important;
+  }
+
+  &.disabled {
+    color: @hlrui-selector-disabled-color !important;
+    border-color: @hlrui-selector-disabled-border-color !important;
+    background-color: @hlrui-selector-disabled-bg-color !important;
+
+    .hlrui-selector-source {
+      pointer-events: none;
+    }
+  }
+
+  .hlrui-selector-source {
+    position: relative;
+    user-select: none;
+    height: 100%;
+    padding: 0 20px 0 10px;
+    line-height: @form-control-height - 2px;
+    cursor: pointer;
+
+    .hlrui-selector-source-control {
+      .text-ellipsis();
+    }
+
+    .icon-triangle-down {
+      width: 10px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 10px;
+      background-image: url('./images/triangle-down.png');
+      background-position: center;
+      background-size: 9px 5px;
+      background-repeat: no-repeat;
+
+      &.up {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .hlrui-dropdown-wrapper {
+    position: relative;
+  }
+
+  .hlrui-dropdown-box {
+    position: absolute;
+    // tooltip z-index: 999
+    z-index: 998;
+    left: 0;
+    width: 150px;
+    top: 1px;
+    background-color: @hlrui-selector-dropdown-bg-color;
+
+    .hlrui-dropdown-list {
+      border: 1px solid @hlrui-selector-dropdown-border-color;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+
+      ul {
+        color: @hlrui-selector-dropdown-color;
+        text-align: left;
+        min-height: 180px;
+        max-height: 200px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .hlrui-dropdown-item {
+          .text-ellipsis();
+
+          padding: 8px 11px;
+          cursor: pointer;
+          position: relative;
+
+          &.selected {
+            color: @hlrui-selector-dropdown-selected-color;
+            background-color: @hlrui-selector-dropdown-selected-bg-color;
+          }
+
+          &:hover {
+            background-color: @hlrui-selector-dropdown-hover-bg-color;
+          }
+
+          &.with-sub-options {
+            &:after {
+              content: '';
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              background-image: url('./images/triangle-down.png');
+              background-position: center;
+              background-size: 9px 5px;
+              background-repeat: no-repeat;
+              top: 13px;
+              right: 11px;
+              transform: rotate(-90deg);
+            }
+          }
+        }
+      }
+    }
+
+    &.hlrui-dropdown-box-1 {
+      left: 150px * 1;
+    }
+
+    &.hlrui-dropdown-box-2 {
+      left: 150px * 2;
+    }
+  }
+}
