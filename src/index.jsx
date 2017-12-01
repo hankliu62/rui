@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
+import { reactopt } from 'reactopt';
 
 import store from './store/configureStore';
 import history from './libs/History';
 import Routes from './routes/index';
 
 import './less/index.less';
+
+if (process.env.NODE_ENV !== 'prod') {
+  reactopt(React);
+}
 
 const routerHistory = syncHistoryWithStore(history, store);
 

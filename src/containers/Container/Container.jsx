@@ -10,6 +10,8 @@ import { Pagination } from '../../components/Pagination';
 import { Breadcrumb } from '../../components/Breadcrumb';
 import { Dropzone } from '../../components/Dropzone';
 import { CascadeSelector } from '../../components/CascadeSelector';
+import { Icon } from '../../components/Icon';
+import { Rate } from '../../components/Rate';
 import * as CONSTANTS from '../../constants/Constants';
 
 import './Container.less';
@@ -27,6 +29,7 @@ class Container extends Component {
       openedNavKeys: [],
       sidebarExpanded: false,
       dishTypes: ['all'],
+      rate: 0,
 
       pageSize: 10,
       currentPage: 1
@@ -203,6 +206,10 @@ class Container extends Component {
             onChangePage={currentPage => this.setState({ currentPage })}
             onChangeSize={pageSize => this.setState({ currentPage: 1, pageSize })}
           />
+
+          <Icon type="star" size="2x" />
+
+          <Rate value={this.state.rate || 3} onChange={rate => this.setState({ rate })} />
         </div>
       </div>
     );

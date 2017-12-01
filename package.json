@@ -15,7 +15,8 @@
     "prod:build": "better-npm-run build:prod",
     "push:prod": "bash ./bin/build.sh pushprod",
     "precommit": "lint-staged",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "reactopt": "node node_modules/reactopt/main.js"
   },
   "betterScripts": {
     "start": {
@@ -137,6 +138,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-sticky": "^6.0.1",
+    "reactopt": "^1.5.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-pagan": "^0.2.0",
