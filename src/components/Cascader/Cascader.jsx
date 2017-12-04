@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import ReactTooltip from 'react-tooltip';
 
-import './CascadeSelector.less';
+import './Cascader.less';
 
-class CascadeSelector extends Component {
+class Cascader extends Component {
     static propTypes = {
       subOptionsField: PropTypes.string,
       labelField: PropTypes.string,
@@ -106,7 +106,7 @@ class CascadeSelector extends Component {
       }
     }
 
-    handleClickDocument = () => {
+    handleClickDocument = (event) => {
       if (!this.isChildOf(event.target, this.selector) && this.state.isShowDropdown) {
         this.handleHiddenDropdown();
       }
@@ -186,10 +186,10 @@ class CascadeSelector extends Component {
 
 
       return (
-        <div className={classNames('hlrui-cascade-selector', { [className]: className, disabled, focus: isShowDropdown, 'placeholder-status': !selectedOptionLabel })} ref={el => this.selector = el}>
-          <div className="hlrui-selector-source" onClick={this.handleToggleDropdown}>
+        <div className={classNames('hlrui-cascader', { [className]: className, disabled, focus: isShowDropdown, 'placeholder-status': !selectedOptionLabel })} ref={el => this.selector = el}>
+          <div className="hlrui-cascader-source" onClick={this.handleToggleDropdown}>
             <div
-              className="hlrui-selector-source-control"
+              className="hlrui-cascader-source-control"
               data-for="source"
             >
               { selectedOptionLabel || placeholder }
@@ -242,4 +242,4 @@ class CascadeSelector extends Component {
     }
 }
 
-export default CascadeSelector;
+export default Cascader;

@@ -1,0 +1,94 @@
+@import '../../less/variables';
+
+@alert-color: @sub;
+@alert-title-color: @title;
+@alert-close-color: rgba(0, 0, 0, .45);
+@alert-close-hover-color: rgba(0, 0, 0, .6);
+
+@alert-types: success info warning error;
+@alert-type-bg-colors: #ebf8f2 #ecf6fd #fffaeb #fef0ef;
+@alert-type-border-colors: #cfefdf #d2eafb #fff3cf #fcdbd9;
+@alert-type-icon-colors: @success @info @warning @danger;
+
+@alert-types-length: length(@alert-types);
+
+.hlrui-alert {
+  padding: 10px 48px 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: relative;
+
+  .hlrui-alert-message,
+  .hlrui-alert-description {
+    color: @alert-color;
+    font-size: 12px;
+  }
+
+  .hlrui-alert-message {
+    + .hlrui-alert-description {
+      margin-top: 10px;
+    }
+  }
+
+  .hlrui-icon {
+    position: absolute;
+  }
+
+  &.hlrui-alert-width-description {
+    .hlrui-alert-message {
+      color: @alert-title-color;
+      font-size: 14px;
+    }
+  }
+
+  &.hlrui-alert-width-icon {
+    padding-left: 38px;
+
+    .hlrui-icon {
+      font-size: 14px;
+      left: 16px;
+    }
+
+    &.hlrui-alert-width-description {
+      padding-left: 60px;
+
+      .hlrui-icon {
+        font-size: 28px;
+        left: 16px;
+      }
+    }
+  }
+
+  .hlrui-alert-close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: @alert-close-color;
+
+    &:hover {
+      color: @alert-close-hover-color;
+    }
+  }
+
+  .typesLoop(@n, @i: 1) when (@i =< @n) {
+    @type: extract(@alert-types, @i);
+    @alert-type-bg-color: extract(@alert-type-bg-colors, @i);
+    @alert-type-border-color: extract(@alert-type-border-colors, @i);
+    @alert-type-icon-color: extract(@alert-type-icon-colors, @i);
+
+    &.hlrui-alert-@{type} {
+      background-color: @alert-type-bg-color;
+      border-color: @alert-type-border-color;
+
+      .hlrui-icon {
+        color: @alert-type-icon-color;
+      }
+    }
+
+    .typesLoop(@n, (@i + 1));
+  }
+
+  .typesLoop(@alert-types-length);
+}

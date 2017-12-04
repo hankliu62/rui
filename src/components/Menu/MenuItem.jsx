@@ -27,7 +27,11 @@ class MenuItem extends PureComponent {
     this.getRootMenu = this.getRootMenu.bind(this);
   }
 
-  handleItemClick = () => {
+  handleItemClick = (event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+
     const { ukey, disabled } = this.props;
 
     if (disabled) {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Alert } from '../../components/Alert';
+
 class Homepage extends Component {
   static propTypes = {
     content: PropTypes.string
@@ -14,11 +16,21 @@ class Homepage extends Component {
     };
   }
 
-  render() {
-    const { content } = this.props;
+  handleClose = () => {
 
+  }
+
+  render() {
     return (
-      <div className="homepage-main">{ content || 'Hello World!' }</div>
+      <div className="common-main homepage-main">
+        <header className="main-page-header">
+          <h1>首页</h1>
+        </header>
+
+        <div className="main-page-body">
+          Homepage
+        </div>
+      </div>
     );
   }
 }

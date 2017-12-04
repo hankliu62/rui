@@ -4,22 +4,20 @@
   }
 
   100% {
-    background-position: 100% 0;
+    background-position: -100% 0;
   }
 }
 
-.hl-skeleton-loading {
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: placeHolderShimmer;
-  animation-timing-function: linear;
+@skeleton-loading-height: 40px;
+
+.hlrui-skeleton-loading {
+  animation: placeHolderShimmer 1s infinite linear;
   background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
   background-size: 200% 100%;
-  height: 40px;
+  height: @skeleton-loading-height;
   position: relative;
 
-  .hl-background-masker {
+  .hlrui-background-masker {
     background-color: #fff;
     position: absolute;
 
@@ -27,46 +25,46 @@
     &.header-bottom,
     &.subheader-bottom {
       top: 0;
-      left: 40px;
+      left: @skeleton-loading-height;
       right: 0;
-      height: 10px;
+      height: 25%;
     }
 
     &.header-left,
     &.subheader-left,
     &.header-right,
     &.subheader-right {
-      top: 10px;
-      left: 40px;
-      height: 8px;
-      width: 10px;
+      top: 25%;
+      left: @skeleton-loading-height;
+      height: 20%;
+      width: @skeleton-loading-height / 4;
     }
 
     &.header-bottom {
-      top: 18px;
-      height: 6px;
+      top: 45%;
+      height: 15%;
     }
 
     &.subheader-left,
     &.subheader-right {
-      top: 24px;
-      height: 6px;
+      top: 60%;
+      height: 15%;
     }
 
     &.header-right,
     &.subheader-right {
       width: auto;
-      left: 300px;
+      left: @skeleton-loading-height * 7.5;
       right: 0;
     }
 
     &.subheader-right {
-      left: 230px;
+      left: @skeleton-loading-height * 5.75;
     }
 
     &.subheader-bottom {
-      top: 30px;
-      height: 10px;
+      top: 75%;
+      height: 25%;
     }
 
     &.content-top,
@@ -75,42 +73,42 @@
     &.content-second-end,
     &.content-third-end,
     &.content-first-end {
-      top: 40px;
+      top: 100%;
       left: 0;
       right: 0;
-      height: 6px;
+      height: 15%;
     }
 
     &.content-top {
-      height: 20px;
+      height: 50%;
     }
 
     &.content-first-end,
     &.content-second-end,
     &.content-third-end {
       width: auto;
-      left: 380px;
+      left: @skeleton-loading-height * 9.5;
       right: 0;
-      top: 60px;
-      height: 8px;
+      top: 150%;
+      height: 20%;
     }
 
     &.content-second-line {
-      top: 68px;
+      top: 170%;
     }
 
     &.content-second-end {
-      left: 420px;
-      top: 74px;
+      left: @skeleton-loading-height * 10.5;
+      top: 185%;
     }
 
     &.content-third-line {
-      top: 82px;
+      top: 205%;
     }
 
     &.content-third-end {
-      left: 300px;
-      top: 88px;
+      left: @skeleton-loading-height * 7.5;
+      top: 220%;
     }
   }
 }

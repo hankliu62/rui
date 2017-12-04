@@ -11,6 +11,8 @@
 @hlrui-dropzone-upload-fail-bar-bg-color: #f43838;
 @hlrui-dropzone-upload-success-bar-color: @white;
 @hlrui-dropzone-upload-success-bar-bg-color: #0095ff;
+@hlrui-dropzone-operate-item-color: #fff;
+@hlrui-dropzone-operate-item-hover-color: #57c8f1;
 
 .hlrui-dropzone {
   background-color: @hlrui-dropzone-bg-color;
@@ -72,10 +74,8 @@
         display: inline-block;
         margin-bottom: 10px;
         position: relative;
-
-        + .selected-image-wrap {
-          margin-left: 8px;
-        }
+        font-size: 0;
+        margin-right: 8px;
 
         .selected-image-operate-bar {
           position: absolute;
@@ -94,33 +94,14 @@
             display: inline-block;
             vertical-align: top;
             overflow: hidden;
-            background-image: url('./images/img-dropzone-operate.png');
-            background-repeat: no-repeat;
+            font-size: 18px;
+            color: @hlrui-dropzone-operate-item-color;
             margin: 5px 1px 1px;
+            text-align: center;
             cursor: pointer;
 
-            &.operate-remove {
-              background-position: -48px -24px;
-
-              &:hover {
-                background-position: -48px 0;
-              }
-            }
-
-            &.operate-rotate-right {
-              background-position: -24px -24px;
-
-              &:hover {
-                background-position: -24px 0;
-              }
-            }
-
-            &.operate-rotate-left {
-              background-position: 0 -24px;
-
-              &:hover {
-                background-position: 0 0;
-              }
+            &:hover {
+              color: @hlrui-dropzone-operate-item-hover-color;
             }
           }
         }

@@ -1,0 +1,99 @@
+@import '../../less/mixins/clearfix';
+
+@hlrui-modal-mask-bg-color: rgba(0, 0, 0, .5);
+@hlrui-modal-bg-color: #fff;
+@hlrui-modal-shadow-color: rgba(0, 0, 0, .5);
+@hlrui-modal-header-border-color: #e5e5e5;
+@hlrui-modal-close-color: rgba(0, 0, 0, .2);
+@hlrui-modal-close-hover-color: rgba(0, 0, 0, .5);
+@hlrui-modal-close-shadow-color: #fff;
+
+.hlrui-modal {
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+
+  .hlrui-modal-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    margin-left: -300px;
+    border-radius: 5px;
+    background-color: @hlrui-modal-bg-color;
+    box-shadow: @hlrui-modal-shadow-color;
+    z-index: 2;
+
+    .hlrui-modal-header {
+      .clearfix();
+
+      position: relative;
+      padding: 15px;
+      border-bottom: 1px solid @hlrui-modal-header-border-color;
+
+      .hlrui-modal-title {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      .hlrui-modal-extra {
+        position: absolute;
+        right: 45px;
+        top: 15px;
+      }
+
+      .hlrui-modal-close {
+        cursor: pointer;
+        float: right;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        color: @hlrui-modal-close-color;
+        text-shadow: 0 1px 0 @hlrui-modal-close-shadow-color;
+
+        &:hover {
+          color: @hlrui-modal-close-hover-color;
+        }
+      }
+    }
+
+    .hlrui-modal-body {
+      padding: 15px;
+      position: relative;
+    }
+
+    .hlrui-modal-footer {
+      padding: 15px;
+      text-align: right;
+
+      &:empty {
+        padding: 0;
+      }
+
+      .hlrui-btn {
+        + .hlrui-btn {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  .hlrui-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: @hlrui-modal-mask-bg-color;
+    z-index: 1;
+  }
+}

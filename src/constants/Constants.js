@@ -1,8 +1,12 @@
 // 左侧导航条
 export const MENUS = [
   {
+    key: '/homepage',
+    title: '首页'
+  },
+  {
     key: '/base',
-    title: '基本',
+    title: 'Base 基本',
     subMenus: [
       {
         key: '/base/color',
@@ -27,12 +31,34 @@ export const MENUS = [
     ]
   },
   {
+    key: '/navigation',
+    title: 'Navigation 导航',
+    subMenus: [
+      {
+        key: '/navigation/breadcrumb',
+        title: 'Breadcrumb 面包屑'
+      },
+      {
+        key: '/navigation/Pagination',
+        title: 'Pagination 分页'
+      },
+      {
+        key: '/navigation/steps',
+        title: 'Steps 步骤条'
+      }
+    ]
+  },
+  {
     key: '/form',
-    title: '表单',
+    title: 'Form 表单',
     subMenus: [
       {
         key: '/form/index',
         title: 'Form 表单'
+      },
+      {
+        key: '/data/cascader',
+        title: 'Cascader 级联选择'
       },
       {
         key: '/form/radio',
@@ -65,12 +91,16 @@ export const MENUS = [
       {
         key: '/form/date-picker',
         title: 'DatePicker 日期选择器'
+      },
+      {
+        key: '/form/dropzone',
+        title: 'Dropzone 拖拽上传'
       }
     ]
   },
   {
     key: '/data',
-    title: '数据显示',
+    title: 'Data 数据显示',
     subMenus: [
       {
         key: '/data/avatar',
@@ -97,10 +127,6 @@ export const MENUS = [
         title: 'Card 卡片'
       },
       {
-        key: '/data/progress',
-        title: 'Progress 进度条'
-      },
-      {
         key: '/data/rate',
         title: 'Rate 评分'
       },
@@ -119,31 +145,35 @@ export const MENUS = [
     ]
   },
   {
-    key: '/nav',
-    title: '导航',
+    key: '/feedback',
+    title: 'Feedback 反馈',
     subMenus: [
       {
-        key: '/nav/alert',
+        key: '/feedback/alert',
         title: 'Alert 警告'
       },
       {
-        key: '/nav/modal',
+        key: '/feedback/modal',
         title: 'Modal 对话框'
       },
       {
-        key: '/nav/message',
+        key: '/feedback/message',
         title: 'Message 全局提示'
       },
       {
-        key: '/nav/notification',
+        key: '/feedback/notification',
         title: 'Notification 通知提醒框'
       },
       {
-        key: '/nav/loading',
+        key: '/feedback/progress',
+        title: 'Progress 进度条'
+      },
+      {
+        key: '/feedback/loading',
         title: 'Loading 加载中'
       },
       {
-        key: '/nav/transition',
+        key: '/feedback/transition',
         title: 'Transition 过渡动画'
       }
     ]

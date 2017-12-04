@@ -1,0 +1,29 @@
+@import './style/index';
+
+.hlrui-steps {
+  .hlrui-steps-item {
+    &.hlrui-steps-item-finish {
+      .hlrui-steps-item-icon {
+        .hlrui-steps-icon {
+          &.icon-check {
+            &:before {
+              content: '\f00c';
+            }
+          }
+        }
+      }
+    }
+
+    &.hlrui-steps-item-error {
+      .hlrui-steps-item-icon {
+        .hlrui-steps-icon {
+          &.icon-cross {
+            &:before {
+              content: '\f00d';
+            }
+          }
+        }
+      }
+    }
+  }
+}

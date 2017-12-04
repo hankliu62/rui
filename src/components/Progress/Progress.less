@@ -6,10 +6,10 @@
 @hlrui-progress-percent-shadow-color: rgba(0, 0, 0, .15);
 @hlrui-progress-percent-bg-color: @theme-color;
 
-@progress-themes: primary aquablue tred tyellow tgreen;
+@progress-themes: primary tblue tred tyellow tgreen;
 @progress-theme-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320;
 
-@themes-length: length(@progress-themes);
+@progress-themes-length: length(@progress-themes);
 
 .hlrui-progress {
   height: 20px;
@@ -24,6 +24,8 @@
     height: 100%;
 
     .hlrui-progress-percent {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
       width: 0;
       transition: width .3s ease-in-out;
       float: left;
@@ -34,15 +36,19 @@
   }
 
   .themesLoop(@n, @i: 1) when (@i =< @n) {
-    @theme: extract(@btn-themes, @i);
+    @theme: extract(@progress-themes, @i);
     @progress-theme-bg-color: extract(@progress-theme-bg-colors, @i);
 
-    &.hlrui-progress-percent {
-      background-color: @progress-theme-bg-color;
+    &.hlrui-progress-@{theme} {
+      .hlrui-progress-bar {
+        .hlrui-progress-percent {
+          background-color: @progress-theme-bg-color;
+        }
+      }
     }
 
     .themesLoop(@n, (@i + 1));
   }
 
-  .themesLoop(@themes-length);
+  .themesLoop(@progress-themes-length);
 }

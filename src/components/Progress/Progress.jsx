@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
+import './Progress.less';
+
 class Progress extends PureComponent {
   render() {
     const { percent, height, className } = this.props;

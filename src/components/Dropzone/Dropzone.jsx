@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DropZone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { throttle } from 'lodash';
 
 import { Progress } from '../Progress';
 import ImageUploadDefault from './images/img-upload-default-multiple.png';
@@ -12,24 +13,31 @@ class Dropzone extends Component {
     static propTypes = {
       imgWidth: PropTypes.number,
       imgHeight: PropTypes.number,
+      maxCount: PropTypes.number, // 最多上传的数量
       batchUploadCount: PropTypes.number, // 同时异步并发上传的个数
       limit: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // 上传图片大小限制（kb）
       totalLimit: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // 上传图片大小限制（kb）
       className: PropTypes.string,
+      action: PropTypes.string,
       disabled: PropTypes.bool,
       accept: PropTypes.arrayOf(PropTypes.string), // 允许上传图片类型
       onDrop: PropTypes.func,
-      onUpload: PropTypes.func // ** attention **: should return a promise to control uploading progress bar
+      onUpload: PropTypes.func, // ** attention **: should return a promise to control uploading progress bar
+      onUploaded: PropTypes.func,
+      onError: PropTypes.func
     }
 
     static defaultProps = {
       imgWidth: 160,
       imgHeight: 100,
-      batchUploadCount: 3,
+      maxCount: 300,
+      batchUploadCount: 5,
       limit: 1024,
       totalLimit: Infinity,
       accept: ['jpeg', 'png', 'jpg', 'bmp'],
-      disabled: false
+      disabled: false,
+      onError: obj => alert(obj.message),
+      onUploaded: () => {}
     }
 
     constructor(props) {
@@ -56,6 +64,8 @@ class Dropzone extends Component {
       this.directions = [0, 1, 2, 3];
 
       this.uploadingProgressTimers = {};
+
+      this.handleThrottleUploadFiles = throttle(this.handleUploadFiles.bind(this), 800);
     }
 
     componentWillUnmount() {
@@ -63,7 +73,7 @@ class Dropzone extends Component {
     }
 
     handleDropFiles = (acceptedFiles, rejectedFiles) => {
-      const { limit, totalLimit } = this.props;
+      const { limit, totalLimit, maxCount } = this.props;
       const { selectedFilesTotalSize, selectedFiles } = this.state;
       const accepted = selectedFiles.map(item => item.file);
 
@@ -85,22 +95,40 @@ class Dropzone extends Component {
         }
       }
 
+      let toastMessage = '';
       if (existFiles.length) {
-        // TODO: toast
-        console.log(existFiles, '等文件已存在');
+        const existFileNames = existFiles.map(item => `"${item.name}"`);
+        toastMessage = `${existFileNames.join(', ')}等文件已存在;</br>`;
       }
 
       if (rejectedFilesIncrement.length) {
-        // TODO: toast
-        console.log(rejectedFilesIncrement, '等文件不符合上传条件');
+        const rejectedFilesIncrementNames = rejectedFilesIncrement.map(item => `"${item.name}"`);
+        toastMessage = `${toastMessage}${rejectedFilesIncrementNames.join(', ')}等文件不符合上传条件;</br>`;
       }
 
-      if (acceptedFilesIncrement.length) {
+      const incrementLength = acceptedFilesIncrement.length;
+      const selectedFilesLength = selectedFiles.length;
+      if (incrementLength + selectedFilesLength > maxCount) {
+        const overflowFiles = acceptedFilesIncrement.splice(maxCount - selectedFilesLength);
+        const roverflowFileNames = overflowFiles.map(item => `"${item.name}"`);
+        toastMessage = `${toastMessage}${roverflowFileNames.join(', ')}等文件超出上传数量的限制;</br>`;
+      }
+
+      if (toastMessage) {
+        this.props.onError({
+          status: 'error',
+          message: toastMessage
+        });
+      }
+
+      if (incrementLength) {
         const nextAccepted = [...accepted, ...acceptedFilesIncrement];
         const totalFileSizeIncrement = nextAccepted.reduce((previousSize, nextFile) => previousSize + nextFile.size, 0);
         if (totalFileSizeIncrement > totalLimit * 1024) {
-          // TODO: toast
-          console.log('超出总量限制');
+          this.props.onError({
+            status: 'error',
+            message: '超出总量限制'
+          });
 
           if (this.props.onDrop) {
             this.props.onDrop([], [...(acceptedFiles || []), ...(rejectedFiles || [])]);
@@ -168,8 +196,11 @@ class Dropzone extends Component {
     }
 
     handleUploadFiles = async () => {
+      if (this.state.status === 'uploading') {
+        return;
+      }
+
       this.setState({ status: 'uploading', uploadedImages: [] });
-      // TODO: upload files
       const { selectedFiles } = this.state;
       const { batchUploadCount } = this.props;
       const uploadHandler = this.props.onUpload || this.uploadFile;
@@ -178,8 +209,8 @@ class Dropzone extends Component {
       const willUploadFiles = selectedFiles.map((file, index) => ({ ...file, index })).filter(file => ['beforeUpload', 'failed'].includes(file.uploadStatus));
 
       const uploadFilesChunks = this.chunk(willUploadFiles, batchUploadCount);
-      console.log(willUploadFiles, uploadFilesChunks);
 
+      let hasUploadFailedFile = false;
       for (const uploadFilesChunk of uploadFilesChunks) {
         const uploadChunckPromise = uploadFilesChunk.map(file => uploadHandler(file.file, file.index));
         await Promise.all(uploadChunckPromise).then((data) => {
@@ -189,7 +220,7 @@ class Dropzone extends Component {
               this.setSelectedFileState(file.index, { uploadStatus: 'failed' });
               this.clearUploadingProgressTimer(file);
               uploadedImages[file.index] = '';
-              console.log(file, '上传失败');
+              hasUploadFailedFile = true;
             } else {
               this.setSelectedFileState(file.index, { uploadStatus: 'succeed', progress: 100 });
               this.clearUploadingProgressTimer(file);
@@ -199,7 +230,16 @@ class Dropzone extends Component {
         });
       }
 
+      this.props.onUploaded(uploadedImages, !hasUploadFailedFile);
+
       this.setState({ status: 'uploaded', uploadedImages });
+
+      // 全部上传成功
+      if (!hasUploadFailedFile) {
+        setTimeout(() => {
+          this.restoreState();
+        }, 2000);
+      }
 
       // for (const [index, file] of willUploadFiles.entries()) {
       //     await uploadHandler(file.file, index).then((url) => {
@@ -210,7 +250,6 @@ class Dropzone extends Component {
       //         this.setSelectedFileState(index, { uploadStatus: 'failed' });
       //         this.clearUploadingProgressTimer(file);
       //         uploadImages[index] = '';
-      //         console.log(file, '上传失败');
       //     });
       // }
     }
@@ -227,6 +266,7 @@ class Dropzone extends Component {
     uploadFile = (file, index) => {
       this.setSelectedFileState(index, { uploadStatus: 'uploading', progress: 0 });
       this.genUploadingProgressTimer(file, index);
+      // 上传
       return this.uploadToLocal(file, index);
     }
 
@@ -236,11 +276,10 @@ class Dropzone extends Component {
         reader.readAsDataURL(file);
         reader.onload = () => {
           setTimeout(() => {
+            // mock 随机成功或者失败上传
             if (Math.random() > 0.5) {
-              console.log(file, 'success');
               resolve({ url: reader.result, index });
             } else {
-              console.log(file, 'fail');
               resolve({ error: new Error('error'), index });
             }
           }, 5000);
@@ -248,10 +287,25 @@ class Dropzone extends Component {
 
         reader.onerror = (err) => {
           setTimeout(() => {
-            // TODO： show fail reason
             resolve({ error: err, index });
           }, 5000);
         };
+      });
+    }
+
+    uploadToRemote = (file, index) => {
+      const formData = new FormData();
+      formData.append('filename', (file.name || '').replace(/\..+$/, ''));
+      formData.append('file', file, file.name);
+
+      return new Promise((resolve) => {
+        fetch(this.props.action, { method: 'POST', body: formData }).then((response) => {
+          const imgUrl = response.data && response.data.result;
+          resolve({ url: imgUrl, index });
+        }).catch((ex) => {
+          resolve({ error: ex, index });
+          console.log('parsing failed', ex);
+        });
       });
     }
 
@@ -291,6 +345,10 @@ class Dropzone extends Component {
       window.setTimeout(uploadingProgressTimer, 100);
     }
 
+    restoreState = () => {
+      this.setState({ status: 'beforeUpload', uploadedImages: [], selectedFilesTotalSize: 0, selectedFiles: [] });
+    }
+
     readFileAsDataURL = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -325,9 +383,9 @@ class Dropzone extends Component {
       return (
         <div className={classNames('selected-image-wrap', { 'unupload-image-wrap': ['beforeUpload', 'failed'].includes(file.uploadStatus) })} key={file.name + file.size + file.lastModified}>
           <div className="selected-image-operate-bar">
-            <span className={classNames('operate-item operate-rotate-left', { hidden: file.uploadStatus !== 'beforeUpload' })} onClick={() => this.handleRotateSelectedFile(index, -1)} />
-            <span className={classNames('operate-item operate-rotate-right', { hidden: file.uploadStatus !== 'beforeUpload' })} onClick={() => this.handleRotateSelectedFile(index, 1)} />
-            <span className="operate-item operate-remove" onClick={() => this.handleRemoveSelectedFile(index)} />
+            <span className={classNames('operate-item icon icon-undo', { hidden: file.uploadStatus !== 'beforeUpload' })} onClick={() => this.handleRotateSelectedFile(index, -1)} />
+            <span className={classNames('operate-item icon icon-repeat', { hidden: file.uploadStatus !== 'beforeUpload' })} onClick={() => this.handleRotateSelectedFile(index, 1)} />
+            <span className="operate-item icon icon-trash" onClick={() => this.handleRemoveSelectedFile(index)} />
           </div>
           {
             ['beforeUpload', 'uploading'].includes(file.uploadStatus) && <Progress className="hlrui-progress-tred" percent={progress} height="10" />
@@ -352,7 +410,7 @@ class Dropzone extends Component {
 
     render() {
       const { selectedFilesTotalSize, selectedFiles, status, uploadedImages } = this.state;
-      const { className, disabled, accept } = this.props;
+      const { className, disabled, accept, maxCount, limit } = this.props;
 
       // 本次上传成功或失败的图片数量
       const succeedFilesLength = uploadedImages.filter(item => !!item).length;
@@ -360,31 +418,28 @@ class Dropzone extends Component {
 
       return (
         <div className={classNames('hlrui-dropzone', { [className]: className })}>
-          {
-            (!selectedFiles || !selectedFiles.length) &&
-            <DropZone
-              ref={node => this.dropzoneRef = node}
-              className="hlrui-dropzone-wrap"
-              accept={accept.map(item => `image/${item}`).join(', ')}
-              onDrop={this.handleDropFiles}
-              disabled={disabled}
-              disableClick
-            >
-              <div className="hlrui-dropzone-form-group dropzone-form-group-desc">
-                <p className="dropzone-upload-desc">图片文件名需同菜品名完全一致</p>
-              </div>
-              <div className="hlrui-dropzone-form-group dropzone-form-group-default">
-                <img className="image-upload-default" src={ImageUploadDefault} />
-              </div>
-              <div className="hlrui-dropzone-form-group dropzone-form-group-button">
-                <div className="hlrui-btn hlrui-btn-tblue" onClick={() => this.dropzoneRef.open()}>点击选择图片</div>
-              </div>
-              <div className="hlrui-dropzone-form-group dropzone-form-group-desc">
-                <p className="dropzone-upload-desc">或将图片拖到这里，单次最多可选300张</p>
-                <p className="dropzone-upload-desc">单张图片最大350kb，纵横比16：10，推荐尺寸1280px乘800px，最小尺寸800px乘500px（仅支持jpg、jpeg、bmp和png格式）</p>
-              </div>
-            </DropZone>
-          }
+          <DropZone
+            ref={node => this.dropzoneRef = node}
+            className={classNames('hlrui-dropzone-wrap', { hidden: !!(selectedFiles && selectedFiles.length) })}
+            accept={accept.map(item => `image/${item}`).join(', ')}
+            onDrop={this.handleDropFiles}
+            disabled={disabled}
+            disableClick
+          >
+            <div className="hlrui-dropzone-form-group dropzone-form-group-desc">
+              <p className="dropzone-upload-desc">图片文件名需同菜品名完全一致</p>
+            </div>
+            <div className="hlrui-dropzone-form-group dropzone-form-group-default">
+              <img className="image-upload-default" src={ImageUploadDefault} />
+            </div>
+            <div className="hlrui-dropzone-form-group dropzone-form-group-button">
+              <div className="hlrui-btn hlrui-btn-tblue" onClick={() => this.dropzoneRef.open()}>点击选择图片</div>
+            </div>
+            <div className="hlrui-dropzone-form-group dropzone-form-group-desc">
+              <p className="dropzone-upload-desc">或将图片拖到这里，单次最多可选{maxCount}张</p>
+              <p className="dropzone-upload-desc">单张图片最大{limit}kb，纵横比16：10，推荐尺寸1280px*800px，最小尺寸800px*500px（仅支持jpg、jpeg、bmp和png格式）</p>
+            </div>
+          </DropZone>
           {
             !!(selectedFiles && selectedFiles.length) &&
             <div className="hlrui-dropzone-preview">
@@ -413,7 +468,9 @@ class Dropzone extends Component {
                       multiple
                     />
                   </div>
-                  <div className="hlrui-btn hlrui-btn-tred" onClick={() => this.handleUploadFiles()}>开始上传</div>
+                  <div className="hlrui-btn hlrui-btn-tred" onClick={this.handleThrottleUploadFiles}>
+                    { status === 'uploading' ? <i className="icon icon-spinner rotating" /> : '开始上传' }
+                  </div>
                 </div>
               </div>
             </div>

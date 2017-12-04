@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import ReactTooltip from 'react-tooltip';
 
+import './Selector.less';
+
 class Selector extends Component {
   static propTypes = {
     labelField: PropTypes.string,
@@ -128,10 +130,10 @@ class Selector extends Component {
     }
 
     return (
-      <div className={classNames('hk-selector', { [className]: className, disabled, focus: isShowDropdown, 'placeholder-status': !selectedOptionLabel })} ref={el => this.selector = el}>
-        <div className="hk-selector-source" onClick={this.handleToggleDropdown}>
+      <div className={classNames('hlrui-selector', { [className]: className, disabled, focus: isShowDropdown, 'placeholder-status': !selectedOptionLabel })} ref={el => this.selector = el}>
+        <div className="hlrui-selector-source" onClick={this.handleToggleDropdown}>
           <div
-            className="hk-selector-source-control"
+            className="hlrui-selector-source-control"
             data-for="source"
           >
             { selectedOptionLabel || placeholder }
@@ -141,18 +143,18 @@ class Selector extends Component {
         { /* tooltipable && <ReactTooltip id="source" place="bottom" type="dark" effect="solid" getContent={() => selectedOptionLabel || ''} /> */}
         {
           isShowDropdown &&
-            <div className="hk-dropdown-wrapper">
-              <div className="hk-dropdown-box">
+            <div className="hlrui-dropdown-wrapper">
+              <div className="hlrui-dropdown-box">
                 {
                   filterable &&
-                    <input className="hk-dropdown-filter-input u-ipt-box" name="search" type="text" value={search} onChange={this.handleInputChange} />
+                    <input className="hlrui-dropdown-filter-input u-ipt-box" name="search" type="text" value={search} onChange={this.handleInputChange} />
                 }
-                <div className="hk-dropdown-list">
+                <div className="hlrui-dropdown-list">
                   <ul>
                     {
                       options.map(option => (
                         <li
-                          className={classNames('hk-dropdown-item', {
+                          className={classNames('hlrui-dropdown-item', {
                             selected: this.props.value === option[valueField]
                           })}
                           key={option[valueField]}
