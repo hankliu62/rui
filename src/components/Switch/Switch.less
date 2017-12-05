@@ -1,0 +1,203 @@
+@import '../../less/variables';
+@import '../../less/mixins/animation';
+
+@switch-themes: default tblue tred tyellow tgreen;
+
+@switch-theme-colors: @white @white @white @white @white;
+@switch-theme-checked-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320;
+@switch-theme-unchecked-bg-colors: #ccc #ccc #ccc #ccc #ccc;
+@switch-theme-shadow-colors: rgba(28, 165, 156, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5);
+@switch-themes-length: length(@switch-themes);
+
+@switch-default-width: 44px;
+@switch-default-height: 22px;
+@switch-sm-width: 36px;
+@switch-sm-height: 18px;
+@switch-lg-width: 60px;
+@switch-lg-height: 30px;
+
+@switch--bg-color: rgba(0, 0, 0, .26);
+@switch-ball-shadow-color: rgba(0, 0, 0, .26);
+
+@switch-duration: .3s;
+@switch-timing-function: cubic-bezier(.35, 0, .25, 1);
+
+.hlrui-switch {
+  font-size: 14px;
+  position: relative;
+  display: inline-block;
+  width: @switch-default-width;
+  height: @switch-default-height;
+  color: extract(@switch-theme-colors, 1);
+  background-color: extract(@switch-theme-unchecked-bg-colors, 1);
+  border-radius: @switch-default-height - 2px;
+  line-height: @switch-default-height - 2px;
+  cursor: pointer;
+
+  .hlrui-switch-content {
+    font-size: 14px;
+    position: absolute;
+    left: @switch-default-width + 2px - @switch-default-height;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: @switch-default-height - 4px;
+    height: @switch-default-height - 4px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background-color: extract(@switch-theme-colors, 1);
+    box-shadow: 0 2px 5px @switch-ball-shadow-color;
+    transform: scale(1);
+    transition: left @switch-duration @switch-timing-function;
+    animation-timing-function: @switch-timing-function;
+    animation-duration: @switch-duration;
+    animation-name: switchOff;
+  }
+
+  &:hover {
+    &:after {
+      transform: scale(1.1);
+      animation-name: switchOn;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px extract(@switch-theme-shadow-colors, 1);
+  }
+
+  &.hlrui-switch-checked {
+    background-color: extract(@switch-theme-checked-bg-colors, 1);
+
+    .hlrui-switch-content {
+      left: 6px;
+    }
+
+    &:after {
+      left: @switch-default-width + 2px - @switch-default-height;
+    }
+  }
+
+  &.disabled {
+    opacity: .7;
+    cursor: not-allowed;
+
+    &:after {
+      transform: none;
+      animation: none;
+    }
+
+    &:hover {
+      &:after {
+        transform: none;
+        animation: none;
+      }
+    }
+  }
+
+  &.hlrui-switch-size-sm {
+    width: @switch-sm-width;
+    height: @switch-sm-height;
+    border-radius: @switch-sm-height - 2px;
+    line-height: @switch-sm-height - 2px;
+
+    .hlrui-switch-content {
+      font-size: 12px;
+      left: @switch-sm-width + 2px - @switch-sm-height;
+    }
+
+    &:after {
+      width: @switch-sm-height - 4px;
+      height: @switch-sm-height - 4px;
+    }
+
+    &.hlrui-switch-checked {
+      .hlrui-switch-content {
+        left: 4px;
+      }
+
+      &:after {
+        left: @switch-sm-width + 2px - @switch-sm-height;
+      }
+    }
+  }
+
+  &.hlrui-switch-size-lg {
+    width: @switch-lg-width;
+    height: @switch-lg-height;
+    border-radius: @switch-lg-height - 4px;
+    line-height: @switch-lg-height - 2px;
+
+    .hlrui-switch-content {
+      font-size: 16px;
+      left: @switch-lg-width + 2px - @switch-lg-height;
+    }
+
+    &:after {
+      top: 4px;
+      left: 4px;
+      width: @switch-lg-height - 8px;
+      height: @switch-lg-height - 8px;
+    }
+
+    &.hlrui-switch-checked {
+      .hlrui-switch-content {
+        left: 10px;
+      }
+
+      &:after {
+        left: @switch-lg-width + 4px - @switch-lg-height;
+      }
+    }
+  }
+
+  .themesLoop(@n, @i: 1) when (@i =< @n) {
+    @theme: extract(@switch-themes, @i);
+
+    @switch-theme-color: extract(@switch-theme-colors, @i);
+    @switch-theme-checked-bg-color: extract(@switch-theme-checked-bg-colors, @i);
+    @switch-theme-unchecked-bg-color: extract(@switch-theme-unchecked-bg-colors, @i);
+    @switch-theme-shadow-color: extract(@switch-theme-shadow-colors, @i);
+
+    &.hlrui-switch-theme-@{theme} {
+      color: @switch-theme-color;
+      background-color: @switch-theme-unchecked-bg-color;
+
+      &:focus {
+        box-shadow: 0 0 3px @switch-theme-shadow-color;
+      }
+
+      &.hlrui-switch-checked {
+        background-color: @switch-theme-checked-bg-color;
+      }
+    }
+
+    .themesLoop(@n, (@i + 1));
+  }
+
+  .themesLoop(@switch-themes-length);
+}
+
+.keyframes(switchOn, {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+});
+
+.keyframes(switchOff, {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+});

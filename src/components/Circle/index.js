@@ -1,1 +1,7 @@
-export { default as Circle } from './Circle';
+import Circle from './Circle';
+
+export {
+  Circle
+};
+
+export default Circle;

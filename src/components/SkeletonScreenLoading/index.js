@@ -1,1 +1,7 @@
-export { default as SkeletonScreenLoading } from './SkeletonScreenLoading';
+import SkeletonScreenLoading from './SkeletonScreenLoading';
+
+export {
+  SkeletonScreenLoading
+};
+
+export default SkeletonScreenLoading;

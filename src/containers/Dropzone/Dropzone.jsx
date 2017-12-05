@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { Dropzone } from '../../components/Dropzone';
 
 class DropzoneContainer extends Component {
-  static propTypes = {
-    content: PropTypes.string
-  }
-
   constructor(props) {
     super(props);
 

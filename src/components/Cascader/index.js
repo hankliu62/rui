@@ -1,1 +1,7 @@
-export { default as Cascader } from './Cascader';
+import Cascader from './Cascader';
+
+export {
+  Cascader
+};
+
+export default Cascader;

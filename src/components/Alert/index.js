@@ -1,1 +1,7 @@
-export { default as Alert } from './Alert';
+import Alert from './Alert';
+
+export {
+  Alert
+};
+
+export default Alert;

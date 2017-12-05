@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { Selector } from '../../components/Selector';
 
 class SelectorContainer extends Component {
-  static propTypes = {
-    content: PropTypes.string
-  }
-
   constructor(props) {
     super(props);
 

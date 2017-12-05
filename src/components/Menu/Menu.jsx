@@ -2,9 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import MenuItem from './MenuItem';
+import SubMenu from './SubMenu';
+
 import './Menu.less';
 
 class Menu extends PureComponent {
+  static MenuItem = MenuItem;
+
+  static SubMenu = SubMenu;
+
   static childContextTypes = {
     component: PropTypes.any
   }

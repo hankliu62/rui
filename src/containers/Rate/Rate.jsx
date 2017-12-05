@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { Rate } from '../../components/Rate';
 
 class RateContainer extends Component {
-  static propTypes = {
-    content: PropTypes.string
-  }
-
   constructor(props) {
     super(props);
 

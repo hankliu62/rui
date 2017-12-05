@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Checkbox from './Checkbox';
-
-import './CheckboxGroup.less';
+import './Checkbox.less';
 
 class CheckboxGroup extends Component {
-  static Checkbox = Checkbox;
-
   static propTypes = {
     block: PropTypes.bool,
     className: PropTypes.string,

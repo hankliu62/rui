@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { Alert } from '../../components/Alert';
 
 import './Alert.less';
 
 class AlertContainer extends Component {
-  static propTypes = {
-    content: PropTypes.string
-  }
-
   constructor(props) {
     super(props);
 

@@ -7,7 +7,9 @@ import BundleWrappingRoute from '../components/BundleWrappingRoute/BundleWrappin
 
 const loadHomepageAsync = () => import(/* webpackChunkName: 'containers/Homepage' */ '../containers/Homepage/Homepage');
 const loadNotFountAsync = () => import(/* webpackChunkName: 'containers/Error/NotFount' */ '../containers/Error/NotFount');
+
 const loadIconPageAsync = () => import(/* webpackChunkName: 'containers/Icon' */ '../containers/Icon/Icon');
+const loadButtonPageAsync = () => import(/* webpackChunkName: 'containers/Button' */ '../containers/Button/Button');
 
 const loadBreadcrumbPageAsync = () => import(/* webpackChunkName: 'containers/Breadcrumb' */ '../containers/Breadcrumb/Breadcrumb');
 const loadPaginationPageAsync = () => import(/* webpackChunkName: 'containers/Pagination' */ '../containers/Pagination/Pagination');
@@ -15,9 +17,11 @@ const loadStepsPageAsync = () => import(/* webpackChunkName: 'containers/Steps' 
 
 const loadRadioPageAsync = () => import(/* webpackChunkName: 'containers/Radio' */ '../containers/Radio/Radio');
 const loadCheckboxPageAsync = () => import(/* webpackChunkName: 'containers/Checkbox' */ '../containers/Checkbox/Checkbox');
-const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Dropzone' */ '../containers/Dropzone/Dropzone');
 const loadSelectorPageAsync = () => import(/* webpackChunkName: 'containers/Selector' */ '../containers/Selector/Selector');
+const loadSwitchPageAsync = () => import(/* webpackChunkName: 'containers/Switch' */ '../containers/Switch/Switch');
+const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Dropzone' */ '../containers/Dropzone/Dropzone');
 
+const loadAvatarPageAsync = () => import(/* webpackChunkName: 'containers/Avatar' */ '../containers/Avatar/Avatar');
 const loadCascaderPageAsync = () => import(/* webpackChunkName: 'containers/Cascader' */ '../containers/Cascader/Cascader');
 const loadRatePageAsync = () => import(/* webpackChunkName: 'containers/Rate' */ '../containers/Rate/Rate');
 
@@ -34,6 +38,7 @@ const AppRouter = () => {
         <Redirect exact from="/" to="/homepage" />
         <BundleWrappingRoute exact path="/homepage" component={App} load={loadHomepageAsync} />
         <BundleWrappingRoute exact path="/base/icon" component={App} load={loadIconPageAsync} />
+        <BundleWrappingRoute exact path="/base/button" component={App} load={loadButtonPageAsync} />
 
         <BundleWrappingRoute exact path="/navigation/breadcrumb" component={App} load={loadBreadcrumbPageAsync} />
         <BundleWrappingRoute exact path="/navigation/pagination" component={App} load={loadPaginationPageAsync} />
@@ -41,9 +46,11 @@ const AppRouter = () => {
 
         <BundleWrappingRoute exact path="/form/radio" component={App} load={loadRadioPageAsync} />
         <BundleWrappingRoute exact path="/form/checkbox" component={App} load={loadCheckboxPageAsync} />
-        <BundleWrappingRoute exact path="/form/dropzone" component={App} load={loadDropzonePageAsync} />
         <BundleWrappingRoute exact path="/form/select" component={App} load={loadSelectorPageAsync} />
+        <BundleWrappingRoute exact path="/form/switch" component={App} load={loadSwitchPageAsync} />
+        <BundleWrappingRoute exact path="/form/dropzone" component={App} load={loadDropzonePageAsync} />
 
+        <BundleWrappingRoute exact path="/data/avatar" component={App} load={loadAvatarPageAsync} />
         <BundleWrappingRoute exact path="/data/cascader" component={App} load={loadCascaderPageAsync} />
         <BundleWrappingRoute exact path="/data/rate" component={App} load={loadRatePageAsync} />
 

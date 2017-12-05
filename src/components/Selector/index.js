@@ -1,1 +1,7 @@
-export { default as Selector } from './Selector';
+import Selector from './Selector';
+
+export {
+  Selector
+};
+
+export default Selector;

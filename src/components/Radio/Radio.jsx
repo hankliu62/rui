@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './RadioGroup.less';
+import RadioGroup from './RadioGroup';
+
+import './Radio.less';
 
 class Radio extends Component {
+  static Group = RadioGroup;
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,

@@ -1,1 +1,7 @@
-export { default as Affix } from './Affix';
+import Affix from './Affix';
+
+export {
+  Affix
+};
+
+export default Affix;

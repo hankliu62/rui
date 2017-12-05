@@ -1,1 +1,7 @@
-export { default as Rate } from './Rate';
+import Rate from './Rate';
+
+export {
+  Rate
+};
+
+export default Rate;

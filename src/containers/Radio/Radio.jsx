@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { RadioGroup } from '../../components/RadioGroup';
+import { RadioGroup } from '../../components/Radio';
 
 class RadioContainer extends Component {
   constructor(props) {

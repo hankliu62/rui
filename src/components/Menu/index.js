@@ -1,3 +1,12 @@
-export { default as Menu } from './Menu';
-export { default as MenuItem } from './MenuItem';
-export { default as SubMenu } from './SubMenu';
+import Menu from './Menu';
+import MenuItem from './MenuItem';
+import SubMenu from './SubMenu';
+
+export {
+  Menu,
+  MenuItem,
+  SubMenu
+};
+
+export default Menu;
+

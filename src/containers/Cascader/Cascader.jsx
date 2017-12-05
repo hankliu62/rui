@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { Cascader } from '../../components/Cascader';
 
 class CascaderContainer extends Component {
-  static propTypes = {
-    content: PropTypes.string
-  }
-
   constructor(props) {
     super(props);
 
