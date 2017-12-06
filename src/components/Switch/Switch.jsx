@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import GetSizeName from '../../decorators/GetSizeName';
+
 import './Switch.less';
 
+@GetSizeName
 class Switch extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
@@ -27,6 +30,8 @@ class Switch extends PureComponent {
     this.state = {
       checked: !!props.value
     };
+
+    this.getSizeName = this.getSizeName.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,20 +53,11 @@ class Switch extends PureComponent {
   }
 
   render() {
-    const { className, value, disabled, theme, size, onChange, checkedChildren, unCheckedChildren, ...others } = this.props;
+    const { className, value, disabled, theme, onChange, checkedChildren, unCheckedChildren, ...others } = this.props;
     const { checked } = this.state;
 
-    let sizeName = '';
-    switch (size) {
-      case 'large': {
-        sizeName = 'lg';
-        break;
-      }
-      case 'small': {
-        sizeName = 'sm';
-        break;
-      }
-    }
+    const sizeName = this.getSizeName();
+    delete (others.size);
 
     return (
       <span

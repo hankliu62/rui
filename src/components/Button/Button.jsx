@@ -4,10 +4,15 @@ import classNames from 'classnames';
 import { throttle } from 'lodash';
 
 import { Icon } from '../Icon';
+import ButtonGroup from './ButtonGroup';
+import GetSizeName from '../../decorators/GetSizeName';
 
 import './Button.less';
 
+@GetSizeName
 class Button extends PureComponent {
+  static ButtonGroup = ButtonGroup;
+
   static propTypes = {
     className: PropTypes.string,
     theme: PropTypes.string,
@@ -41,6 +46,7 @@ class Button extends PureComponent {
     };
 
     this.handleThrottleClick = throttle(this.handleClick, +props.throttle);
+    this.getSizeName = this.getSizeName.bind(this);
   }
 
   componentWillUnmount() {
@@ -73,17 +79,7 @@ class Button extends PureComponent {
     const { checked } = this.state;
 
     const ElemenetName = others.href ? 'a' : 'button';
-    let sizeName = '';
-    switch (size) {
-      case 'large': {
-        sizeName = 'lg';
-        break;
-      }
-      case 'small': {
-        sizeName = 'sm';
-        break;
-      }
-    }
+    const sizeName = this.getSizeName();
 
     if (!others.href) {
       others.type = htmlType;
@@ -99,6 +95,7 @@ class Button extends PureComponent {
     }
 
     delete (others.throttle);
+    delete (others.size);
 
     return (
       <ElemenetName

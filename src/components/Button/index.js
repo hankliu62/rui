@@ -1,7 +1,9 @@
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 
 export {
-  Button
+  Button,
+  ButtonGroup
 };
 
 export default Button;

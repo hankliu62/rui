@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const UglifyJsParallelPlugin = require('webpack-parallel-uglify-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackMD5Hash = require('webpack-md5-hash');
 const webpackConfig = require('./webpack.base.conf');
 const config = require('../../config/config');
@@ -28,6 +29,12 @@ webpackConfig.plugins = webpackConfig.plugins.concat([
   new CleanWebpackPlugin([config.dir_client], {
     root: pathsUtils.dist(),
     verbose: true
+  }),
+  new OptimizeCssAssetsPlugin({
+    assetNameRegExp: /\.css$/g,
+    cssProcessor: require('cssnano'),
+    cssProcessorOptions: { discardComments: { removeAll: true } },
+    canPrint: true
   }),
   // gzip uglify
   new CompressionWebpackPlugin({

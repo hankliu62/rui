@@ -19,9 +19,11 @@ const loadRadioPageAsync = () => import(/* webpackChunkName: 'containers/Radio' 
 const loadCheckboxPageAsync = () => import(/* webpackChunkName: 'containers/Checkbox' */ '../containers/Checkbox/Checkbox');
 const loadSelectorPageAsync = () => import(/* webpackChunkName: 'containers/Selector' */ '../containers/Selector/Selector');
 const loadSwitchPageAsync = () => import(/* webpackChunkName: 'containers/Switch' */ '../containers/Switch/Switch');
+const loadInputPageAsync = () => import(/* webpackChunkName: 'containers/Input' */ '../containers/Input/Input');
 const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Dropzone' */ '../containers/Dropzone/Dropzone');
 
 const loadAvatarPageAsync = () => import(/* webpackChunkName: 'containers/Avatar' */ '../containers/Avatar/Avatar');
+const loadBadgePageAsync = () => import(/* webpackChunkName: 'containers/Badge' */ '../containers/Badge/Badge');
 const loadCascaderPageAsync = () => import(/* webpackChunkName: 'containers/Cascader' */ '../containers/Cascader/Cascader');
 const loadRatePageAsync = () => import(/* webpackChunkName: 'containers/Rate' */ '../containers/Rate/Rate');
 
@@ -48,9 +50,11 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/form/checkbox" component={App} load={loadCheckboxPageAsync} />
         <BundleWrappingRoute exact path="/form/select" component={App} load={loadSelectorPageAsync} />
         <BundleWrappingRoute exact path="/form/switch" component={App} load={loadSwitchPageAsync} />
+        <BundleWrappingRoute exact path="/form/input" component={App} load={loadInputPageAsync} />
         <BundleWrappingRoute exact path="/form/dropzone" component={App} load={loadDropzonePageAsync} />
 
         <BundleWrappingRoute exact path="/data/avatar" component={App} load={loadAvatarPageAsync} />
+        <BundleWrappingRoute exact path="/data/badge" component={App} load={loadBadgePageAsync} />
         <BundleWrappingRoute exact path="/data/cascader" component={App} load={loadCascaderPageAsync} />
         <BundleWrappingRoute exact path="/data/rate" component={App} load={loadRatePageAsync} />
 

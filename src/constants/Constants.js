@@ -85,6 +85,10 @@ export const MENUS = [
         title: 'Input Number 数字输入框'
       },
       {
+        key: '/form/input',
+        title: 'Input 输入框'
+      },
+      {
         key: '/form/time-picker',
         title: 'Time Picker 时间选择器'
       },
@@ -108,7 +112,7 @@ export const MENUS = [
       },
       {
         key: '/data/badge',
-        title: 'Badge 标记'
+        title: 'Badge 徽标'
       },
       {
         key: '/data/calendar',

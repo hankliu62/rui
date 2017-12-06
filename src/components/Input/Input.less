@@ -1,0 +1,114 @@
+@import '../../less/variables';
+
+@input-color: @form-control-color;
+@input-bg-color: @form-control-bg-color;
+@input-border-color: @form-control-border-color;
+@input-placeholder-color: @form-control-placeholder-color;
+
+@input-focus-bg-color: @form-control-focus-bg-color;
+@input-focus-border-color: @form-control-focus-border-color;
+@input-focus-shadow-color: @form-control-focus-shadow-color;
+
+@input-disabled-color: @form-control-disabled-color;
+@input-disabled-bg-color: @form-control-disabled-bg-color;
+@input-disabled-border-color: @form-control-disabled-border-color;
+
+@input-group-addon-color: #555;
+@input-group-addon-bg-color: #eee;
+@input-group-addon-border-color: @input-border-color;
+
+@input-feedback-color: #555;
+
+.hlrui-input {
+  padding: 0 10px;
+  width: @form-control-width;
+  height: @form-control-height;
+  color: @input-color;
+  border: 1px solid @input-border-color;
+  background-color: @input-bg-color;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  box-shadow: none;
+  vertical-align: middle;
+
+  &:focus {
+    border-color: @input-focus-border-color;
+    background-color: @input-focus-bg-color;
+    box-shadow: 0 3px 10px 0 @input-focus-shadow-color;
+    outline: 0;
+  }
+
+  &.error {
+    border-color: @error-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
+    color: @input-disabled-color;
+    background-color: @input-disabled-bg-color;
+    border: 1px solid @input-disabled-border-color;
+  }
+
+  &::-webkit-input-placeholder {
+    color: @input-placeholder-color;
+    user-select: none;
+  }
+
+  &::-moz-placeholder {
+    color: @input-placeholder-color;
+    user-select: none;
+  }
+
+  &:-moz-placeholder {
+    color: @input-placeholder-color;
+    user-select: none;
+  }
+
+  &:-ms-input-placeholder {
+    color: @input-placeholder-color;
+    user-select: none;
+  }
+
+  + .hlrui-input-feedback {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.hlrui-input-group-addon {
+  display: table-cell;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 0 12px;
+  height: @form-control-height - 2px;
+  color: @input-group-addon-color;
+  text-align: center;
+  background-color: @input-group-addon-bg-color;
+  border: 1px solid @input-group-addon-border-color;
+  border-radius: 4px;
+
+  &:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &:last-child {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.hlrui-input-feedback {
+  display: inline-block;
+  color: @input-feedback-color;
+  height: @form-control-height;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: @form-control-height;
+  padding: 0 5px;
+}
+
