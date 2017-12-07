@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Steps, Step } from '../../components/Steps';
 import { Icon } from '../../components/Icon';
 
+import './Steps.less';
+
 class StepsContainer extends Component {
   constructor(props) {
     super(props);
@@ -20,30 +22,38 @@ class StepsContainer extends Component {
         </header>
 
         <div className="main-page-body">
-          <Steps current={1}>
-            <Step title="Finished" description="This is a description." />
-            <Step title="In Progress" description="This is a description." />
-            <Step title="Waiting" description="This is a description." />
-          </Steps>
+          <div className="steps-row-group">
+            <Steps current={1}>
+              <Step title="Finished" description="This is a description." />
+              <Step title="In Progress" description="This is a description." />
+              <Step title="Waiting" description="This is a description." />
+            </Steps>
+          </div>
 
-          <Steps size="small" current={1}>
-            <Step title="Finished" />
-            <Step title="In Progress" />
-            <Step title="Waiting" />
-          </Steps>
+          <div className="steps-row-group">
+            <Steps size="small" current={1}>
+              <Step title="Finished" />
+              <Step title="In Progress" />
+              <Step title="Waiting" />
+            </Steps>
+          </div>
 
-          <Steps>
-            <Step status="finish" title="Login" icon={<Icon type="user" />} />
-            <Step status="finish" title="Verification" icon={<Icon type="hdd" />} />
-            <Step status="process" title="Pay" icon={<Icon type="credit-card" />} />
-            <Step status="wait" title="Done" icon={<Icon type="ok-circle" />} />
-          </Steps>
+          <div className="steps-row-group">
+            <Steps>
+              <Step status="finish" title="Login" icon={<Icon type="user" />} />
+              <Step status="finish" title="Verification" icon={<Icon type="hdd" />} />
+              <Step status="process" title="Pay" icon={<Icon type="credit-card" />} />
+              <Step status="wait" title="Done" icon={<Icon type="ok-circle" />} />
+            </Steps>
+          </div>
 
-          <Steps current={1} status="error">
-            <Step title="Finished" description="This is a description" />
-            <Step title="In Process" description="This is a description" />
-            <Step title="Waiting" description="This is a description" />
-          </Steps>
+          <div className="steps-row-group">
+            <Steps current={1} status="error">
+              <Step title="Finished" description="This is a description" />
+              <Step title="In Process" description="This is a description" />
+              <Step title="Waiting" description="This is a description" />
+            </Steps>
+          </div>
         </div>
       </div>
     );

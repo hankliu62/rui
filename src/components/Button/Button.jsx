@@ -106,6 +106,7 @@ class Button extends PureComponent {
           'hlrui-btn-status-checked': checked,
           'hlrui-btn-background-ghost': ghost,
           'hlrui-btn-only-icon': iconNode && !children,
+          [className]: className,
           disabled
         })}
         onClick={this.handleThrottleClick}

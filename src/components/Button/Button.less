@@ -2,10 +2,11 @@
 
 @btn-themes: primary tblue tred tyellow tgreen cancel default;
 @btn-theme-colors: @white @white @white @white @white @white #333;
-@btn-theme-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320 #ccc @white;
-@btn-theme-border-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320 #ccc #d9d9d9;
-@btn-theme-focus-bg-colors: #1ca59c #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2 @white;
-@btn-theme-shadow-colors: rgba(28, 165, 156, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5) rgba(194, 194, 194, .5) rgba(217, 217, 217, .5);
+@btn-theme-bg-colors: #1890ff #57c8f1 #f36b5f #ffb40d #7ed320 #ccc @white;
+@btn-theme-border-colors: #1890ff #57c8f1 #f36b5f #ffb40d #7ed320 #ccc #d9d9d9;
+@btn-theme-focus-bg-colors: #40a9ff #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2 @white;
+@btn-theme-focus-border-colors: #40a9ff #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2 #d9d9d9;
+@btn-theme-shadow-colors: rgba(24, 144, 255, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5) rgba(194, 194, 194, .5) rgba(217, 217, 217, .5);
 
 @btn-themes-length: length(@btn-themes);
 
@@ -38,6 +39,7 @@
     @btn-theme-bg-color: extract(@btn-theme-bg-colors, @i);
     @btn-theme-border-color: extract(@btn-theme-border-colors, @i);
     @btn-theme-focus-bg-color: extract(@btn-theme-focus-bg-colors, @i);
+    @btn-theme-focus-border-color: extract(@btn-theme-focus-border-colors, @i);
     @btn-theme-shadow-color: extract(@btn-theme-shadow-colors, @i);
 
     &.hlrui-btn-@{theme} {
@@ -49,6 +51,7 @@
       &:active,
       &:focus {
         color: @btn-theme-color;
+        border-color: @btn-theme-focus-border-color;
         background-color: @btn-theme-focus-bg-color;
       }
 
@@ -79,7 +82,7 @@
         &:active,
         &:focus {
           color: @btn-theme-focus-bg-color;
-          border-color: @btn-theme-focus-bg-color;
+          border-color: @btn-theme-focus-border-color;
           background-color: @btn-theme-color;
         }
 
@@ -133,7 +136,7 @@
   }
 
   &.disabled {
-    opacity: .6;
+    opacity: .62;
     cursor: not-allowed;
   }
 

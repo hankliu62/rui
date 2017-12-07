@@ -13,7 +13,7 @@ class IconContainer extends Component {
 
   render() {
     return (
-      <div className="common-main icon-main">
+      <div className="common-main icons-main">
         <header className="main-page-header">
           <h1>Icon 图标</h1>
         </header>

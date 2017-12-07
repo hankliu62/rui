@@ -20,9 +20,14 @@ class LoadingContainer extends Component {
         </header>
 
         <div className="main-page-body">
-          <SkeletonScreenLoading height={this.state.loading} />
 
-          <Icon type="spinner" className="spinning" size="3x" />
+          <div className="loadings-row-group">
+            <SkeletonScreenLoading height={this.state.loading} />
+          </div>
+
+          <div className="loadings-row-group">
+            <Icon type="spinner" className="spinning" size="3x" />
+          </div>
         </div>
       </div>
     );

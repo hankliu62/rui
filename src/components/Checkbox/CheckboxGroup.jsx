@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Checkbox from './Checkbox';
+
 import './Checkbox.less';
 
 class CheckboxGroup extends Component {
@@ -56,7 +58,7 @@ class CheckboxGroup extends Component {
             <Checkbox
               key={option.value}
               disabled={disabled || option.disabled}
-              checked={value.includes(option.value)}
+              value={value.includes(option.value)}
               onChange={this.handleCheckItem(index)}
             >
               { option.render ? option.render(option, value) : option.text }

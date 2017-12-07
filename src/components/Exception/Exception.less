@@ -1,0 +1,70 @@
+@import '../../less/mixins/clearfix';
+
+@exception-content-header-color: #434e59;
+@exception-content-desc-color: #727272;
+
+.hlrui-exception {
+  font-size: 0;
+
+  .hlrui-exception-image-wrap {
+    .clearfix();
+
+    width: 62%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    padding-right: 150px;
+
+    .hlrui-exception-image {
+      height: 360px;
+      width: 100%;
+      max-width: 430px;
+      float: right;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: contain;
+
+      &.hlrui-exception-image-403 {
+        background-image: url('http://p0l99ckfs.bkt.clouddn.com/403.svg');
+      }
+
+      &.hlrui-exception-image-404 {
+        background-image: url('http://p0l99ckfs.bkt.clouddn.com/404.svg');
+      }
+
+      &.hlrui-exception-image-500 {
+        background-image: url('http://p0l99ckfs.bkt.clouddn.com/500.svg');
+      }
+    }
+  }
+
+  .hlrui-exception-content-wrap {
+    width: 38%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+
+    .hlrui-exception-content-header {
+      color: @exception-content-header-color;
+      font-size: 72px;
+      font-weight: bold;
+      line-height: 72px;
+      margin-bottom: 24px;
+    }
+
+    .hlrui-exception-content-desc {
+      color: @exception-content-desc-color;
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 16px;
+    }
+
+    .hlrui-exception-content-action {
+      .hlrui-btn {
+        + .hlrui-btn {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

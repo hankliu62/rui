@@ -68,14 +68,14 @@
           }
 
           &.disabled {
-            cursor: default;
+            cursor: not-allowed;
 
             &.active,
             &:hover {
               border-radius: 0;
               background-color: @hlrui-pagination-btn-bg-color;
               color: @hlrui-pagination-color;
-              cursor: default;
+              cursor: not-allowed;
             }
           }
         }
@@ -85,7 +85,7 @@
           cursor: pointer;
 
           &.disabled {
-            cursor: default;
+            cursor: not-allowed;
           }
         }
 
@@ -97,7 +97,7 @@
 
         &.disabled {
           color: @hlrui-pagination-disabled-color;
-          cursor: default;
+          cursor: not-allowed;
           pointer-events: none;
         }
       }

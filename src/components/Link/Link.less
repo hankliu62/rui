@@ -1,0 +1,55 @@
+@import '../../less/variables';
+
+@link-themes: default primary tblue tred tyellow tgreen cancel;
+@link-theme-colors: #1890ff @theme-color #57c8f1 #f36b5f #ffb40d #7ed320 #ccc;
+@link-theme-focus-colors: #40a9ff #1ca59c #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2;
+
+@link-themes-length: length(@link-themes);
+
+.hlrui-link {
+  display: inline-block;
+  font-size: 14px;
+
+  &.hlrui-link-size-sm {
+    font-size: 12px;
+  }
+
+  &.hlrui-link-size-lg {
+    font-size: 16px;
+  }
+
+  &.disabled {
+    opacity: .62;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .themesLoop(@n, @i: 1) when (@i =< @n) {
+    @theme: extract(@link-themes, @i);
+
+    @link-theme-color: extract(@link-theme-colors, @i);
+    @link-theme-focus-color: extract(@link-theme-focus-colors, @i);
+
+    &.hlrui-link-theme-@{theme} {
+      color: @link-theme-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: @link-theme-focus-color;
+      }
+
+      &.disabled {
+        &:hover,
+        &:active,
+        &:focus {
+          color: @link-theme-color;
+        }
+      }
+    }
+
+    .themesLoop(@n, (@i + 1));
+  }
+
+  .themesLoop(@link-themes-length);
+}

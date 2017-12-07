@@ -2,10 +2,10 @@
 
 @btn-themes: primary tblue tred tyellow tgreen cancel default;
 @btn-theme-colors: @white @white @white @white @white @white #333;
-@btn-theme-bg-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320 #ccc @white;
-@btn-theme-border-colors: @theme-color #57c8f1 #f36b5f #ffb40d #7ed320 #ccc #d9d9d9;
-@btn-theme-focus-bg-colors: #1ca59c #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2 @white;
-@btn-theme-shadow-colors: rgba(28, 165, 156, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5) rgba(194, 194, 194, .5) rgba(217, 217, 217, .5);
+@btn-theme-bg-colors: #1890ff #57c8f1 #f36b5f #ffb40d #7ed320 #ccc @white;
+@btn-theme-border-colors: #1890ff #57c8f1 #f36b5f #ffb40d #7ed320 #ccc #d9d9d9;
+@btn-theme-focus-bg-colors: #40a9ff #53bee6 #dd4d42 #e58e02 #72c31b #c2c2c2 @white;
+@btn-theme-shadow-colors: rgba(24, 144, 255, .5) rgba(83, 190, 230, .5) rgba(221, 77, 66, .5) rgba(229, 142, 2, .5) rgba(114, 195, 27, .5) rgba(194, 194, 194, .5) rgba(217, 217, 217, .5);
 
 @btn-themes-length: length(@btn-themes);
 
@@ -133,7 +133,7 @@
   }
 
   &.disabled {
-    opacity: .6;
+    opacity: .62;
     cursor: not-allowed;
   }
 
@@ -162,6 +162,36 @@
         height: @btn-circle-onlyicon-lg-width;
         line-height: @btn-circle-onlyicon-lg-width - 2px;
       }
+    }
+  }
+}
+
+.hlrui-btns-group {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  letter-spacing: -1px;
+
+  > .hlrui-btn {
+    position: relative;
+    z-index: 1;
+    letter-spacing: initial;
+
+    &:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      z-index: 2;
+    }
+
+    + .hlrui-btn {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      margin-left: -1px;
     }
   }
 }

@@ -100,6 +100,7 @@
   "globals": {
     "localStorage": true,
     "location": true,
-    "arguments": true
+    "arguments": true,
+    "particlesJS": true
   }
 }

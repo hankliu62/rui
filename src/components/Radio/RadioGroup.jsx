@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Radio from './Radio';
+
 import './Radio.less';
 
 class RadioGroup extends Component {
@@ -45,7 +47,7 @@ class RadioGroup extends Component {
             <Radio
               key={option.value}
               onClick={() => this.handleCheckItem(option.value)}
-              checked={option.value === value}
+              value={option.value === value}
               disabled={disabled || option.disabled}
             >
               { option.render ? option.render(option, value) : option.text }

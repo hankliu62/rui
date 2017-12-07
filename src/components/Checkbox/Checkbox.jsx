@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import CheckboxGroup from './CheckboxGroup';
-
 import './Checkbox.less';
 
 class Checkbox extends Component {
-  static Group = CheckboxGroup;
-
   static propTypes = {
     className: PropTypes.string,
     type: PropTypes.string,
     disabled: PropTypes.bool,
-    checked: PropTypes.bool,
+    value: PropTypes.bool,
     onChange: PropTypes.func,
   }
 
@@ -23,14 +19,14 @@ class Checkbox extends Component {
   }
 
   render() {
-    const { className, type, disabled, checked, children, ...restProps } = this.props;
+    const { className, type, disabled, value, children, ...restProps } = this.props;
 
     return (
       <label
         className={classNames('hlrui-checkbox', `hlrui-checkbox-${type}`, {
-          [className]: className, checked, disabled
+          [className]: className, checked: value, disabled
         })}
-        onClick={() => this.props.onChange(!checked)}
+        onClick={() => this.props.onChange(!value)}
         {...restProps}
       >
         <i className="hlrui-checkbox-icon" />

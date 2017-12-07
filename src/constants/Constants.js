@@ -183,6 +183,34 @@ export const MENUS = [
     ]
   },
   {
+    key: '/exception',
+    title: 'Exception 异常',
+    subMenus: [
+      {
+        key: '/exception/403',
+        title: '403'
+      },
+      {
+        key: '/exception/404',
+        title: '404'
+      },
+      {
+        key: '/exception/500',
+        title: '500'
+      }
+    ]
+  },
+  {
+    key: '/account',
+    title: 'Account 帐户',
+    subMenus: [
+      {
+        key: '/account/login',
+        title: 'Login 登录'
+      }
+    ]
+  },
+  {
     key: 'https://github.com/hankliu62/rui/issues',
     title: '反馈建议',
     outsite: true

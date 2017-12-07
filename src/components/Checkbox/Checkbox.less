@@ -10,7 +10,6 @@
   cursor: pointer;
   margin: 0;
   font-weight: normal;
-  background-color: @hlrui-checkbox-bg-color;
   font-size: 0;
 
   &:hover {
@@ -40,6 +39,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: @hlrui-checkbox-bg-color;
 
     + .hlrui-checkbox-content {
       margin-left: 10px;
@@ -55,8 +55,9 @@
   }
 
   &.disabled {
+    opacity: .62;
     pointer-events: none;
-    opacity: .7;
+    cursor: not-allowed;
   }
 
   &.hlrui-checkbox-box {

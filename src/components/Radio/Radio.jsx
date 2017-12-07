@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import RadioGroup from './RadioGroup';
-
 import './Radio.less';
 
 class Radio extends Component {
-  static Group = RadioGroup;
-
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    checked: PropTypes.bool,
+    value: PropTypes.bool,
     onClick: PropTypes.func,
   }
 
@@ -21,12 +17,12 @@ class Radio extends Component {
   }
 
   render() {
-    const { className, disabled, checked, children, ...restProps } = this.props;
+    const { className, disabled, value, children, ...restProps } = this.props;
 
     return (
       <label
         className={classNames('hlrui-radio', {
-          [className]: className, checked, disabled
+          [className]: className, checked: value, disabled
         })}
         onClick={this.props.onClick}
         {...restProps}

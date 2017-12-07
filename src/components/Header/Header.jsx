@@ -7,7 +7,7 @@ import './Header.less';
 class Header extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    logoImage: PropTypes.string,
+    logoImage: PropTypes.any,
     logoContent: PropTypes.any
   }
 
