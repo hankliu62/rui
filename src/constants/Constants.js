@@ -57,7 +57,7 @@ export const MENUS = [
         title: 'Form 表单'
       },
       {
-        key: '/data/cascader',
+        key: '/form/cascader',
         title: 'Cascader 级联选择'
       },
       {

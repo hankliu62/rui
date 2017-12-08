@@ -24,9 +24,13 @@ class RateContainer extends Component {
         </header>
 
         <div className="main-page-body">
-          <Rate value={this.state.rate} onChange={this.handleChangeRate('rate')} />
+          <div className="rates-row-group">
+            <Rate value={this.state.rate} onChange={this.handleChangeRate('rate')} />
+          </div>
 
-          <Rate value={this.state.halfRate} onChange={this.handleChangeRate('halfRate')} allowHalf />
+          <div className="rates-row-group">
+            <Rate value={this.state.halfRate} onChange={this.handleChangeRate('halfRate')} allowHalf />
+          </div>
         </div>
       </div>
     );

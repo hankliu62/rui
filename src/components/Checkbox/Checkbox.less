@@ -1,5 +1,8 @@
+@import '../../less/mixins/animation';
+
 @hlrui-checkbox-color: #666;
 @hlrui-checkbox-bg-color: #fff;
+@hlrui-checkbox-border-color: #6ece19;
 @hlrui-checkbox-box-border-color: #ccc;
 @hlrui-checkbox-box-checked-border-color: #ffb40d;
 @hlrui-checkbox-box-checked-color: #fff;
@@ -26,7 +29,21 @@
     }
 
     .hlrui-checkbox-icon {
+      position: relative;
       background-image: url('./images/checkbox-checked.png');
+
+      &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 3px;
+        content: '';
+        animation: checkboxCheckedProcessing 1.2s ease-in-out;
+        transform-origin: center;
+      }
     }
   }
 
@@ -109,6 +126,19 @@
       }
     }
   }
+
+  .keyframes(checkboxCheckedProcessing, {
+    0% {
+      border: 1px solid @hlrui-checkbox-border-color;
+      transform: scale(1);
+      opacity: .5;
+    }
+    100% {
+      border: 1px solid @hlrui-checkbox-border-color;
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  });
 }
 
 .hlrui-checkbox-group {

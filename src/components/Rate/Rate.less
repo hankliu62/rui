@@ -9,6 +9,7 @@
     display: inline-block;
     width: @hlrui-rate-star-width + 10px;
     font-size: 0;
+    transition: transform .3s cubic-bezier(.35, 0, .25, 1);
 
     &:not(:last-child) {
       padding-right: 10px;
@@ -40,6 +41,10 @@
           margin-left: -@hlrui-rate-star-width / 2;
         }
       }
+    }
+
+    &:hover {
+      transform: scale(1.1);
     }
   }
 

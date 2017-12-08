@@ -7,6 +7,7 @@ import BundleWrappingRoute from '../components/BundleWrappingRoute/BundleWrappin
 
 const loadHomepageAsync = () => import(/* webpackChunkName: 'containers/Homepage' */ '../containers/Homepage/Homepage');
 
+const loadColorPageAsync = () => import(/* webpackChunkName: 'containers/Color' */ '../containers/Color/Color');
 const loadIconPageAsync = () => import(/* webpackChunkName: 'containers/Icon' */ '../containers/Icon/Icon');
 const loadButtonPageAsync = () => import(/* webpackChunkName: 'containers/Button' */ '../containers/Button/Button');
 
@@ -14,6 +15,7 @@ const loadBreadcrumbPageAsync = () => import(/* webpackChunkName: 'containers/Br
 const loadPaginationPageAsync = () => import(/* webpackChunkName: 'containers/Pagination' */ '../containers/Pagination/Pagination');
 const loadStepsPageAsync = () => import(/* webpackChunkName: 'containers/Steps' */ '../containers/Steps/Steps');
 
+const loadCascaderPageAsync = () => import(/* webpackChunkName: 'containers/Cascader' */ '../containers/Cascader/Cascader');
 const loadRadioPageAsync = () => import(/* webpackChunkName: 'containers/Radio' */ '../containers/Radio/Radio');
 const loadCheckboxPageAsync = () => import(/* webpackChunkName: 'containers/Checkbox' */ '../containers/Checkbox/Checkbox');
 const loadSelectorPageAsync = () => import(/* webpackChunkName: 'containers/Selector' */ '../containers/Selector/Selector');
@@ -23,8 +25,9 @@ const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Drop
 
 const loadAvatarPageAsync = () => import(/* webpackChunkName: 'containers/Avatar' */ '../containers/Avatar/Avatar');
 const loadBadgePageAsync = () => import(/* webpackChunkName: 'containers/Badge' */ '../containers/Badge/Badge');
-const loadCascaderPageAsync = () => import(/* webpackChunkName: 'containers/Cascader' */ '../containers/Cascader/Cascader');
+const loadCardPageAsync = () => import(/* webpackChunkName: 'containers/Card' */ '../containers/Card/Card');
 const loadRatePageAsync = () => import(/* webpackChunkName: 'containers/Rate' */ '../containers/Rate/Rate');
+const loadTooltipPageAsync = () => import(/* webpackChunkName: 'containers/Tooltip' */ '../containers/Tooltip/Tooltip');
 
 const loadAlertPageAsync = () => import(/* webpackChunkName: 'containers/Alert' */ '../containers/Alert/Alert');
 const loadModalPageAsync = () => import(/* webpackChunkName: 'containers/Modal' */ '../containers/Modal/Modal');
@@ -44,6 +47,8 @@ const AppRouter = () => {
       <Switch>
         <Redirect exact from="/" to="/homepage" />
         <BundleWrappingRoute exact path="/homepage" component={Container} load={loadHomepageAsync} />
+
+        <BundleWrappingRoute exact path="/base/color" component={Container} load={loadColorPageAsync} />
         <BundleWrappingRoute exact path="/base/icon" component={Container} load={loadIconPageAsync} />
         <BundleWrappingRoute exact path="/base/button" component={Container} load={loadButtonPageAsync} />
 
@@ -51,6 +56,7 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/navigation/pagination" component={Container} load={loadPaginationPageAsync} />
         <BundleWrappingRoute exact path="/navigation/steps" component={Container} load={loadStepsPageAsync} />
 
+        <BundleWrappingRoute exact path="/form/cascader" component={Container} load={loadCascaderPageAsync} />
         <BundleWrappingRoute exact path="/form/radio" component={Container} load={loadRadioPageAsync} />
         <BundleWrappingRoute exact path="/form/checkbox" component={Container} load={loadCheckboxPageAsync} />
         <BundleWrappingRoute exact path="/form/select" component={Container} load={loadSelectorPageAsync} />
@@ -60,8 +66,9 @@ const AppRouter = () => {
 
         <BundleWrappingRoute exact path="/data/avatar" component={Container} load={loadAvatarPageAsync} />
         <BundleWrappingRoute exact path="/data/badge" component={Container} load={loadBadgePageAsync} />
-        <BundleWrappingRoute exact path="/data/cascader" component={Container} load={loadCascaderPageAsync} />
+        <BundleWrappingRoute exact path="/data/card" component={Container} load={loadCardPageAsync} />
         <BundleWrappingRoute exact path="/data/rate" component={Container} load={loadRatePageAsync} />
+        <BundleWrappingRoute exact path="/data/tooltip" component={Container} load={loadTooltipPageAsync} />
 
         <BundleWrappingRoute exact path="/feedback/alert" component={Container} load={loadAlertPageAsync} />
         <BundleWrappingRoute exact path="/feedback/modal" component={Container} load={loadModalPageAsync} />

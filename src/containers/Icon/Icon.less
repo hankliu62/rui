@@ -1,0 +1,52 @@
+.icons-main {
+  .main-page-body {
+    .icons-row-group {
+      font-size: 0;
+
+      .hlrui-display-icon {
+        display: inline-block;
+        vertical-align: top;
+        width: 25%;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 5px 10px;
+        transition: background-color .3s linear;
+
+        &:hover {
+          background-color: #fff0f5;
+          border-radius: 4px;
+
+          .hlrui-icon {
+            &::before {
+              transform: scale(1.5);
+            }
+          }
+        }
+
+        .hlrui-icon {
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 10px;
+          line-height: 22px;
+          width: 22px;
+          height: 22px;
+          text-align: center;
+
+          &::before {
+            transition: transform .3s linear;
+          }
+        }
+
+        .hlrui-display-icon-name {
+          display: inline-block;
+          vertical-align: top;
+          line-height: 22px;
+        }
+
+        + .hlrui-display-icon {
+          margin-left: 0 !important;
+        }
+      }
+    }
+  }
+}
