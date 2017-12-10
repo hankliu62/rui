@@ -173,12 +173,34 @@ export const MENUS = [
         title: 'Progress 进度条'
       },
       {
+        key: '/feedback/popconfirm',
+        title: 'PopConfirm 气泡确认框'
+      },
+      {
         key: '/feedback/loading',
         title: 'Loading 加载中'
       },
       {
         key: '/feedback/transition',
         title: 'Transition 过渡动画'
+      }
+    ]
+  },
+  {
+    key: '/other',
+    title: 'Other 其他',
+    subMenus: [
+      {
+        key: '/other/anchor',
+        title: 'Anchor 锚点'
+      },
+      {
+        key: '/other/backtop',
+        title: 'BackTop 回到顶部'
+      },
+      {
+        key: '/other/divider',
+        title: 'Divider 分割线'
       }
     ]
   },

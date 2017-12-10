@@ -12,7 +12,7 @@ const rootReducers = combineReducers({
 });
 
 const middlewares = [thunk, routerMiddleware(history)];
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'prod') {
   middlewares.push(createLogger());
 }
 

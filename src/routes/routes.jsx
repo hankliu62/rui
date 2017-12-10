@@ -32,7 +32,10 @@ const loadTooltipPageAsync = () => import(/* webpackChunkName: 'containers/Toolt
 const loadAlertPageAsync = () => import(/* webpackChunkName: 'containers/Alert' */ '../containers/Alert/Alert');
 const loadModalPageAsync = () => import(/* webpackChunkName: 'containers/Modal' */ '../containers/Modal/Modal');
 const loadProgressPageAsync = () => import(/* webpackChunkName: 'containers/Progress' */ '../containers/Progress/Progress');
+const loadPopConfirmPageAsync = () => import(/* webpackChunkName: 'containers/PopConfirm' */ '../containers/PopConfirm/PopConfirm');
 const loadLoadingPageAsync = () => import(/* webpackChunkName: 'containers/Loading' */ '../containers/Loading/Loading');
+
+const loadDividerPageAsync = () => import(/* webpackChunkName: 'containers/Divider' */ '../containers/Divider/Divider');
 
 const loadLoginPageAsync = () => import(/* webpackChunkName: 'containers/Login' */ '../containers/Login/Login');
 
@@ -73,7 +76,10 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/feedback/alert" component={Container} load={loadAlertPageAsync} />
         <BundleWrappingRoute exact path="/feedback/modal" component={Container} load={loadModalPageAsync} />
         <BundleWrappingRoute exact path="/feedback/progress" component={Container} load={loadProgressPageAsync} />
+        <BundleWrappingRoute exact path="/feedback/popconfirm" component={Container} load={loadPopConfirmPageAsync} />
         <BundleWrappingRoute exact path="/feedback/loading" component={Container} load={loadLoadingPageAsync} />
+
+        <BundleWrappingRoute exact path="/other/divider" component={Container} load={loadDividerPageAsync} />
 
         <BundleWrappingRoute exact path="/exception/403" component={Container} load={loadWithoutPermissionPageAsync} />
         <BundleWrappingRoute exact path="/exception/404" component={Container} load={loadNotFoundPageAsync} />

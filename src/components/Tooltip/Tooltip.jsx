@@ -12,11 +12,11 @@ const CONSTANTS_PLACEMENT = ['top', 'left', 'right', 'bottom', 'topLeft', 'topRi
 
 const CONSTANTS_TRIGGER = ['hover', 'focus', 'click'];
 
-const CONSTANTS_THEME = ['default', 'primary', 'tblue', 'tred', 'tyellow', 'tgreen'];
+const CONSTANTS_THEME = ['default', 'primary', 'tblue', 'tred', 'tyellow', 'tgreen', 'twhite'];
 
 class Tooltip extends PureComponent {
   static propTypes = {
-    className: PropTypes.string,
+    prefixCls: PropTypes.string,
     overlayClassName: PropTypes.string,
     openClassName: PropTypes.string,
     theme: PropTypes.oneOf(CONSTANTS_THEME),
@@ -24,6 +24,7 @@ class Tooltip extends PureComponent {
     style: PropTypes.object,
     overlayStyle: PropTypes.object,
     builtinPlacements: PropTypes.object,
+    overlay: PropTypes.node,
     mouseEnterDelay: PropTypes.number,
     mouseLeaveDelay: PropTypes.number,
     placement: PropTypes.oneOf(CONSTANTS_PLACEMENT),
@@ -41,6 +42,7 @@ class Tooltip extends PureComponent {
   }
 
   static defaultProps = {
+    prefixCls: 'hlrui-tooltip-open',
     openClassName: 'hlrui-tooltip-open',
     onVisibleChange: () => {}
   }
@@ -97,7 +99,7 @@ class Tooltip extends PureComponent {
   }
 
   render() {
-    const { title, overlay, openClassName, getPopupContainer, getTooltipContainer, theme, overlayClassName, children, ...others } = this.props;
+    const { prefixCls, title, overlay, openClassName, getPopupContainer, getTooltipContainer, theme, overlayClassName, children, ...others } = this.props;
     let { visible } = this.state;
     // Hide tooltip when there is no title
     if (!('visible' in this.props) && this.hasNoOverlay()) {
@@ -115,9 +117,9 @@ class Tooltip extends PureComponent {
         {...others}
         overlayClassName={classNames({
           [overlayClassName]: overlayClassName,
-          [`hlrui-tooltip-theme-${theme}`]: theme,
+          [`${prefixCls}-theme-${theme}`]: theme,
         })}
-        prefixCls="hlrui-tooltip"
+        prefixCls={prefixCls}
         getTooltipContainer={getPopupContainer || getTooltipContainer}
         ref={this.saveTooltip}
         builtinPlacements={this.getPlacements()}
