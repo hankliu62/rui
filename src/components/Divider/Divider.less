@@ -1,3 +1,66 @@
+@import '../../less/variables';
+
+@divider-bg-color: hsv(0, 0, 91%);
+@divider-with-text-color: fade(#000, 85%);
+
 .hlrui-divider {
-  display: inline-block;
+  background-color: @divider-bg-color;
+
+  &.hlrui-divider-vertical {
+    margin: 0 8px;
+    display: inline-block;
+    height: .9em;
+    width: 1px;
+    vertical-align: middle;
+    position: relative;
+    top: -.06em;
+  }
+
+  &.hlrui-divider-horizontal {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: 24px 0;
+
+    &.hlrui-divider-with-text {
+      display: table;
+      white-space: nowrap;
+      text-align: center;
+      background: transparent;
+      font-weight: 500;
+      color: @divider-with-text-color;
+      font-size: @font-size-lg;
+      margin: 16px 0;
+
+      &:before,
+      &:after {
+        content: '';
+        display: table-cell;
+        position: relative;
+        top: 50%;
+        width: 50%;
+        border-top: 1px solid @divider-bg-color;
+        transform: translateY(50%);
+      }
+
+      &.hlrui-divider-dashed {
+        border-top: 0;
+
+        &:before,
+        &:after {
+          border-style: dashed none none;
+        }
+      }
+    }
+  }
+
+  .hlrui-divider-inner-text {
+    display: inline-block;
+    padding: 0 24px;
+  }
+
+  &.hlrui-divider-dashed {
+    background: none;
+    border-top: 1px dashed @divider-bg-color;
+  }
 }

@@ -25,14 +25,14 @@ class LoginContainer extends Component {
     particlesJS('particles-js', {
       particles: {
         number: { // 点数量
-          value: 50,
+          value: 20,
           density: { // 密度
             enable: true,
-            value_area: 800
+            value_area: 1000
           }
         },
         color: { // 点颜色
-          value: ['#ffffff', '#57c8f1', '#f36b5f', '#ffb40d', '#7ed320'] // 'random'
+          value: ['#aaa', '#57c8f1', '#f36b5f', '#ffb40d', '#7ed320'] // 'random'
         },
         shape: { // 点形状
           type: ['circle'],
@@ -55,7 +55,7 @@ class LoginContainer extends Component {
           }
         },
         size: { // shape大小
-          value: 5,
+          value: 16,
           random: true,
           anim: {
             enable: false,
@@ -66,14 +66,14 @@ class LoginContainer extends Component {
         },
         line_linked: { // 连线
           enable: true,
-          distance: 150,
-          color: '#ffffff',
+          distance: 300,
+          color: '#ddd',
           opacity: 0.4,
           width: 1
         },
         move: { // 点移动
           enable: true,
-          speed: 6, // 速度
+          speed: 2, // 速度
           direction: 'none', // 方向
           random: false,
           straight: false, // 直线
@@ -90,7 +90,7 @@ class LoginContainer extends Component {
         detect_on: 'canvas', // 检测
         events: {
           onhover: {
-            enable: true,
+            enable: false,
             mode: 'grab'
           },
           onclick: {
@@ -196,7 +196,7 @@ class LoginContainer extends Component {
           </div>
         </div>
 
-        <Footer className="login-main-footer" companyName="上海云汐信息科技有限公司" icp="沪ICP备XXXXXXXX号-X" style={{ backgroundColor: 'rgba(0, 0, 0, .32={})' }} />
+        <Footer className="login-main-footer" companyName="上海云汐信息科技有限公司" icp="沪ICP备XXXXXXXX号-X" style={{ backgroundColor: 'rgba(0, 0, 0, .32)', color: '#333' }} />
       </div>
     );
   }

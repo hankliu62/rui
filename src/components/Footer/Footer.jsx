@@ -18,7 +18,7 @@ class Footer extends PureComponent {
 
     let year = currentYear;
     if (beginYear) {
-      year = `beginYear - ${year}`;
+      year = `${beginYear} - ${year}`;
     }
 
     return [
