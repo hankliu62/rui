@@ -39,6 +39,7 @@ const loadLoadingPageAsync = () => import(/* webpackChunkName: 'containers/Loadi
 const loadDividerPageAsync = () => import(/* webpackChunkName: 'containers/Divider' */ '../containers/Divider/Divider');
 
 const loadLoginPageAsync = () => import(/* webpackChunkName: 'containers/Login' */ '../containers/Login/Login');
+const loadRegisterPageAsync = () => import(/* webpackChunkName: 'containers/Register' */ '../containers/Register/Register');
 
 const loadWithoutPermissionPageAsync = () => import(/* webpackChunkName: 'containers/WithoutPermission' */ '../containers/WithoutPermission/WithoutPermission');
 const loadNotFoundPageAsync = () => import(/* webpackChunkName: 'containers/NotFound' */ '../containers/NotFound/NotFound');
@@ -88,6 +89,7 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/exception/500" component={Container} load={loadServerErrorPageAsync} />
 
         <BundleWrappingRoute exact path="/account/login" load={loadLoginPageAsync} />
+        <BundleWrappingRoute exact path="/account/register" load={loadRegisterPageAsync} />
 
         {/* <BundleWrappingRoute path="/wechat" load={loadWechatAsync} /> // 注：不能使用这种coding split的方式加载子模块，除非子模块只是一个单页面，否则路由改变是页面不会渲染 */}
         {/* <Route path="/wechat" render={nextProps => (<WechatContainer {...nextProps} />)} /> */}

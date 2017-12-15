@@ -1,11 +1,12 @@
 @import '../../less/mixins/clearfix';
 
-@login-gradient-start-bg: hsla(220, 100%, 12%, 1);
-@login-gradient-end-bg: hsla(220, 40%, 4%, 1);
-@login-main-theme-white-bg: #f7fafc;
+// login header
 @login-header-bg-color: rgba(255, 255, 255, .48);
 @login-header-theme-white-bg-color: rgba(0, 0, 0, .48);
-@login-body-bg-color: rgba(255, 255, 255, .86);
+
+// login-body
+@login-body-bg-color: rgba(255, 255, 255, .5);
+@login-body-shadow-color: #ddd;
 @login-body-theme-white-bg-color: rgba(255, 255, 255, .12);
 
 .login-main {
@@ -41,8 +42,9 @@
       border-radius: 5px;
       width: 100%;
       padding: 25px 55px 120px;
-      // background-color: @login-body-bg-color;
-      background-color: @login-body-theme-white-bg-color;
+      background-color: @login-body-bg-color;
+      box-shadow: 0 0 10px 0 @login-body-shadow-color;
+      // background-color: @login-body-theme-white-bg-color;
 
       .body-wrap-top {
         padding: 75px 0 40px;
@@ -84,34 +86,6 @@
 
   .login-main-footer {
     z-index: 1;
-  }
-
-  .login-main-bg {
-    z-index: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    // background-image: linear-gradient(8deg, @login-gradient-start-bg, @login-gradient-end-bg 50%);
-    background-color: @login-main-theme-white-bg;
-
-    // &::before {
-    //   // background: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('./images/bg.jpeg');
-    //   background: linear-gradient(rgba(0, 235, 235, .7), rgba(0, 235, 235, .7)), url('./images/bg1.jpeg');
-    //   background-color: @login-main-theme-white-bg;
-    //   background-attachment: fixed;
-    //   background-position: center center;
-    //   background-repeat: no-repeat;
-    //   background-size: cover;
-    //   bottom: 0;
-    //   content: '';
-    //   left: 0;
-    //   position: absolute;
-    //   right: 0;
-    //   top: 0;
-    //   z-index: -1;
-    // }
   }
 
   .hlrui-form {

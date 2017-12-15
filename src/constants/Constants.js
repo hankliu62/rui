@@ -229,6 +229,10 @@ export const MENUS = [
       {
         key: '/account/login',
         title: 'Login 登录'
+      },
+      {
+        key: '/account/register',
+        title: 'Register 注册'
       }
     ]
   },

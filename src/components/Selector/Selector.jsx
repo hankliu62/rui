@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import ReactTooltip from 'react-tooltip';
 
+import GetSizeName from '../../decorators/GetSizeName';
+
 import './Selector.less';
 
+@GetSizeName
 class Selector extends Component {
   static propTypes = {
     labelField: PropTypes.string,
@@ -37,6 +40,8 @@ class Selector extends Component {
       search: '',
       selectedOptionLabel: selectedOption ? selectedOption[labelField] : ''
     };
+
+    this.getSizeName = this.getSizeName.bind(this);
   }
 
   componentDidMount() {
@@ -129,8 +134,19 @@ class Selector extends Component {
       options = options.filter(option => this.matchSearch(option[labelField]));
     }
 
+    const sizeName = this.getSizeName();
+
     return (
-      <div className={classNames('hlrui-selector', { [className]: className, disabled, focus: isShowDropdown, 'placeholder-status': !selectedOptionLabel })} ref={el => this.selector = el}>
+      <div
+        className={classNames('hlrui-selector', {
+          [className]: className,
+          focus: isShowDropdown,
+          'placeholder-status': !selectedOptionLabel,
+          [`hlrui-selector-size-${sizeName}`]: sizeName,
+          disabled
+        })}
+        ref={el => this.selector = el}
+      >
         <div className="hlrui-selector-source" onClick={this.handleToggleDropdown}>
           <div
             className="hlrui-selector-source-control"
