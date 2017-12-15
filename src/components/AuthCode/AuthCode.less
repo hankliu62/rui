@@ -1,0 +1,33 @@
+@hlrui-countdown-color: #999;
+@hlrui-countdown-border-color: #ccc;
+@hlrui-countdown-bg-color: #eee;
+
+.hlrui-authcode {
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 15px;
+
+  .hlrui-countdown {
+    padding: 7px 28px;
+    border-radius: 3px;
+    color: @hlrui-countdown-color;
+    border: 1px solid @hlrui-countdown-border-color;
+    background-color: @hlrui-countdown-bg-color;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &.hlrui-authcode-size-sm {
+    .hlrui-countdown {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+
+  &.hlrui-authcode-size-lg {
+    .hlrui-countdown {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
