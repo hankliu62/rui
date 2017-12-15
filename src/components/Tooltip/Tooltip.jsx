@@ -42,7 +42,7 @@ class Tooltip extends PureComponent {
   }
 
   static defaultProps = {
-    prefixCls: 'hlrui-tooltip-open',
+    prefixCls: 'hlrui-tooltip',
     openClassName: 'hlrui-tooltip-open',
     onVisibleChange: () => {}
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LogoImage from '@/images/logo.png';
+import 'particles.js';
 
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
@@ -22,7 +23,7 @@ class LoginContainer extends Component {
 
   componentDidMount() {
     // https://github.com/VincentGarreau/particles.js
-    particlesJS('particles-js', {
+    window.particlesJS('particles-js', {
       particles: {
         number: { // 点数量
           value: 20,
@@ -67,7 +68,7 @@ class LoginContainer extends Component {
         line_linked: { // 连线
           enable: true,
           distance: 300,
-          color: '#ddd',
+          color: '#bbb',
           opacity: 0.4,
           width: 1
         },
