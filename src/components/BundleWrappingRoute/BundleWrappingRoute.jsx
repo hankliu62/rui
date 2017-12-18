@@ -5,7 +5,7 @@ import Bundle from '../Bundle/Bundle';
 
 const innerWrapper = InnerWrappingComponent => ChildrenComponent => props => (InnerComponent) => {
   return InnerWrappingComponent ? (
-    <InnerWrappingComponent>
+    <InnerWrappingComponent {...props}>
       <InnerComponent {...props}>
         { ChildrenComponent && ChildrenComponent(props) }
       </InnerComponent>

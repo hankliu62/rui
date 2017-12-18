@@ -19,9 +19,11 @@ class Container extends Component {
   constructor(props) {
     super(props);
 
+    const pathname = (props.location || {}).pathname || '';
+
     this.state = {
-      activatedNavKey: '',
-      openedNavKeys: [],
+      activatedNavKey: pathname && pathname.split('/').length ? pathname.split('/').splice(0, 3).join('/') : '',
+      openedNavKeys: pathname && pathname.split('/').length ? [`/${pathname.split('/')[1]}`] : [],
       sidebarExpanded: false
     };
 
