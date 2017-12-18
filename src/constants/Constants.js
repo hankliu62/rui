@@ -143,6 +143,10 @@ export const MENUS = [
         title: 'Tag 标签'
       },
       {
+        key: '/data/timeline',
+        title: 'Timeline 时间轴'
+      },
+      {
         key: '/data/tooltip',
         title: 'Tooltip 文字提示'
       }

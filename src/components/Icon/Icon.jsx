@@ -12,9 +12,9 @@ class Icon extends PureComponent {
   }
 
   render() {
-    const { className, size, type, ...extraProps } = this.props;
+    const { className, size, type, ...others } = this.props;
 
-    return <i {...extraProps} className={classNames('hlrui-icon', 'icon', `icon-${type}`, { [`icon-${size}`]: size, [className]: className })} />;
+    return <i {...others} className={classNames('hlrui-icon', 'icon', `icon-${type}`, { [`icon-${size}`]: size, [className]: className })} />;
   }
 }
 

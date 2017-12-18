@@ -7,14 +7,17 @@ import BundleWrappingRoute from '../components/BundleWrappingRoute/BundleWrappin
 
 const loadHomepageAsync = () => import(/* webpackChunkName: 'containers/Homepage' */ '../containers/Homepage/Homepage');
 
+// base module
 const loadColorPageAsync = () => import(/* webpackChunkName: 'containers/Color' */ '../containers/Color/Color');
 const loadIconPageAsync = () => import(/* webpackChunkName: 'containers/Icon' */ '../containers/Icon/Icon');
 const loadButtonPageAsync = () => import(/* webpackChunkName: 'containers/Button' */ '../containers/Button/Button');
 
+// navigation module
 const loadBreadcrumbPageAsync = () => import(/* webpackChunkName: 'containers/Breadcrumb' */ '../containers/Breadcrumb/Breadcrumb');
 const loadPaginationPageAsync = () => import(/* webpackChunkName: 'containers/Pagination' */ '../containers/Pagination/Pagination');
 const loadStepsPageAsync = () => import(/* webpackChunkName: 'containers/Steps' */ '../containers/Steps/Steps');
 
+// form module
 const loadCascaderPageAsync = () => import(/* webpackChunkName: 'containers/Cascader' */ '../containers/Cascader/Cascader');
 const loadRadioPageAsync = () => import(/* webpackChunkName: 'containers/Radio' */ '../containers/Radio/Radio');
 const loadCheckboxPageAsync = () => import(/* webpackChunkName: 'containers/Checkbox' */ '../containers/Checkbox/Checkbox');
@@ -23,24 +26,30 @@ const loadSwitchPageAsync = () => import(/* webpackChunkName: 'containers/Switch
 const loadInputPageAsync = () => import(/* webpackChunkName: 'containers/Input' */ '../containers/Input/Input');
 const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Dropzone' */ '../containers/Dropzone/Dropzone');
 
+// data module
 const loadAvatarPageAsync = () => import(/* webpackChunkName: 'containers/Avatar' */ '../containers/Avatar/Avatar');
 const loadBadgePageAsync = () => import(/* webpackChunkName: 'containers/Badge' */ '../containers/Badge/Badge');
 const loadCardPageAsync = () => import(/* webpackChunkName: 'containers/Card' */ '../containers/Card/Card');
 const loadRatePageAsync = () => import(/* webpackChunkName: 'containers/Rate' */ '../containers/Rate/Rate');
 const loadTablePageAsync = () => import(/* webpackChunkName: 'containers/Table' */ '../containers/Table/Table');
+const loadTimelinePageAsync = () => import(/* webpackChunkName: 'containers/Timeline' */ '../containers/Timeline/Timeline');
 const loadTooltipPageAsync = () => import(/* webpackChunkName: 'containers/Tooltip' */ '../containers/Tooltip/Tooltip');
 
+// feedback module
 const loadAlertPageAsync = () => import(/* webpackChunkName: 'containers/Alert' */ '../containers/Alert/Alert');
 const loadModalPageAsync = () => import(/* webpackChunkName: 'containers/Modal' */ '../containers/Modal/Modal');
 const loadProgressPageAsync = () => import(/* webpackChunkName: 'containers/Progress' */ '../containers/Progress/Progress');
 const loadPopConfirmPageAsync = () => import(/* webpackChunkName: 'containers/PopConfirm' */ '../containers/PopConfirm/PopConfirm');
 const loadLoadingPageAsync = () => import(/* webpackChunkName: 'containers/Loading' */ '../containers/Loading/Loading');
 
+// other module
 const loadDividerPageAsync = () => import(/* webpackChunkName: 'containers/Divider' */ '../containers/Divider/Divider');
 
+// account module
 const loadLoginPageAsync = () => import(/* webpackChunkName: 'containers/Login' */ '../containers/Login/Login');
 const loadRegisterPageAsync = () => import(/* webpackChunkName: 'containers/Register' */ '../containers/Register/Register');
 
+// exception module
 const loadWithoutPermissionPageAsync = () => import(/* webpackChunkName: 'containers/WithoutPermission' */ '../containers/WithoutPermission/WithoutPermission');
 const loadNotFoundPageAsync = () => import(/* webpackChunkName: 'containers/NotFound' */ '../containers/NotFound/NotFound');
 const loadServerErrorPageAsync = () => import(/* webpackChunkName: 'containers/ServerError' */ '../containers/ServerError/ServerError');
@@ -74,6 +83,7 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/data/card" component={Container} load={loadCardPageAsync} />
         <BundleWrappingRoute exact path="/data/rate" component={Container} load={loadRatePageAsync} />
         <BundleWrappingRoute exact path="/data/table" component={Container} load={loadTablePageAsync} />
+        <BundleWrappingRoute exact path="/data/timeline" component={Container} load={loadTimelinePageAsync} />
         <BundleWrappingRoute exact path="/data/tooltip" component={Container} load={loadTooltipPageAsync} />
 
         <BundleWrappingRoute exact path="/feedback/alert" component={Container} load={loadAlertPageAsync} />

@@ -1,0 +1,104 @@
+@timeline-line-color: #ddd;
+@timeline-dot-bg-color: #fff;
+@timeline-dot-border-color: #1890ff;
+
+@timeline-themes: primary tblue tred tyellow tgreen cancel default;
+@timeline-theme-dot-colors: #1890ff #57c8f1 #f36b5f #ffb40d #7ed320 #ccc #d9d9d9;
+
+@timeline-themes-length: length(@timeline-themes);
+
+.hlrui-timeline {
+  position: relative;
+  font-size: 14px;
+
+  &.hlrui-timeline-has-pending {
+    .hlrui-timeline-item {
+      &.hlrui-timeline-item-last {
+        padding-bottom: 48px;
+
+        .hlrui-timeline-item-line {
+          display: block;
+          border-left-style: dashed;
+        }
+      }
+
+      &.hlrui-timeline-item-pending {
+        padding-bottom: 0;
+
+        .hlrui-timeline-item-line {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.hlrui-timeline-item {
+  padding-bottom: 20px;
+  position: relative;
+  line-height: 20 / 14;
+
+  .hlrui-timeline-item-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: @timeline-dot-bg-color;
+    color: extract(@timeline-theme-dot-colors, 1);
+    border: 2px solid extract(@timeline-theme-dot-colors, 1);
+    z-index: 2;
+
+    &.hlrui-timeline-item-dot-custom {
+      width: auto;
+      height: auto;
+      border: 0;
+      left: 5px;
+      top: 5px;
+      transform: translate(-50%, -50%);
+      font-size: 0;
+      line-height: 1;
+    }
+  }
+
+  .hlrui-timeline-item-content {
+    position: relative;
+    top: -5px;
+    padding-left: 18px;
+  }
+
+  .hlrui-timeline-item-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+    z-index: 1;
+    width: 2px;
+    border-left: 2px solid @timeline-line-color;
+    box-sizing: border-box;
+  }
+
+  &.hlrui-timeline-item-last {
+    padding-bottom: 0;
+
+    .hlrui-timeline-item-line {
+      display: none;
+    }
+  }
+
+  .themesLoop(@n, @i: 1) when (@i =< @n) {
+    @theme: extract(@timeline-themes, @i);
+
+    @timeline-theme-dot-color: extract(@timeline-theme-dot-colors, @i);
+
+    &.hlrui-timeline-item-theme-@{theme} {
+      .hlrui-timeline-item-dot {
+        color: @timeline-theme-dot-color;
+        border-color: @timeline-theme-dot-color;
+      }
+    }
+
+    .themesLoop(@n, (@i + 1));
+  }
+
+  .themesLoop(@timeline-themes-length);
+}
