@@ -127,6 +127,7 @@
     "postcss-mixins": "^6.1.0",
     "progress-bar-webpack-plugin": "^1.10.0",
     "promise-loader": "^1.0.0",
+    "rc-notification": "^3.0.0",
     "rc-steps": "^3.0.1",
     "rc-tooltip": "^3.7.0",
     "react": "^16.0.0",

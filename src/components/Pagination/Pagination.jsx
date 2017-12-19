@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Selector } from '../Selector';
+import { Icon } from '../Icon';
 
 import './Pagination.less';
 
@@ -179,7 +180,7 @@ class Pagination extends Component {
                 })}
                 onClick={this.handleClickPrevious}
               >
-                <span className="fa fa-angle-left" />
+                <Icon type="angle-left" />
               </li>
               {
                 pageNumbers.map((item, index) => (
@@ -198,7 +199,7 @@ class Pagination extends Component {
                 })}
                 onClick={this.handleClickNext}
               >
-                <span className="fa fa-angle-right" />
+                <Icon type="angle-right" />
               </li>
             </ul>
             {

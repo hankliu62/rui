@@ -1,0 +1,111 @@
+@import '../../less/variables';
+@import '../../less/mixins/clearfix';
+
+@message-bg-color: #fff;
+@message-shadow-color: #ddd;
+@message-description-color: #676b70;
+@message-colse-color: rgba(0, 0, 0, .45);
+@message-colse-hover-color: rgba(0, 0, 0, .65);
+
+@message-types: success info warning error;
+@message-type-bg-colors: #ebf8f2 #ecf6fd #fffaeb #fef0ef;
+@message-type-border-colors: #cfefdf #d2eafb #fff3cf #fcdbd9;
+@message-type-shadow-colors: #e4f8ef #e0f0fc #fcf4de #fce6e5;
+@message-type-icon-colors: @success @info @warning @danger;
+
+@message-types-length: length(@message-types);
+
+.hlrui-message {
+  position: fixed;
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  z-index: 1010;
+  min-width: 250px;
+  max-width: calc(100vw - 32px);
+  border-radius: 4px;
+
+  .hlrui-message-notice {
+    background-color: @message-bg-color;
+    box-shadow: 0 0 10px 0 @message-shadow-color;
+    border-radius: 4px;
+    position: relative;
+
+    .hlrui-message-notice-content {
+      padding: 16px 24px;
+
+      .hlrui-message-notice-message {
+        color: @message-description-color;
+        padding-right: 30px;
+      }
+
+      .hlrui-message-notice-with-icon {
+        .clearfix();
+
+        .hlrui-message-notice-icon {
+          font-size: 16px;
+        }
+
+        .hlrui-message-notice-message {
+          margin-left: 45px;
+        }
+      }
+    }
+
+    .hlrui-message-notice-close {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+
+      .hlrui-message-notice-close-x {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0;
+        height: 20px;
+        line-height: 20px;
+
+        &::after {
+          color: @message-colse-color;
+          content: '×';
+          display: inline-block;
+          font-size: 21px;
+          line-height: 20px;
+        }
+
+        &:hover {
+          &::after {
+            color: @message-colse-hover-color;
+          }
+        }
+      }
+    }
+
+    + .hlrui-message-notice {
+      margin-top: 30px;
+    }
+
+    .typesLoop(@n, @i: 1) when (@i =< @n) {
+      @type: extract(@message-types, @i);
+      @message-type-bg-color: extract(@message-type-bg-colors, @i);
+      @message-type-icon-color: extract(@message-type-icon-colors, @i);
+      @message-type-shadow-color: extract(@message-type-shadow-colors, @i);
+      @message-type-border-color: extract(@message-type-border-colors, @i);
+
+      &.hlrui-message-notice-type-@{type} {
+        background-color: @message-type-bg-color;
+        box-shadow: 0 0 10px 0 @message-type-shadow-color;
+        border: 1px solid @message-type-border-color;
+
+        .hlrui-icon {
+          color: @message-type-icon-color;
+        }
+      }
+
+      .typesLoop(@n, (@i + 1));
+    }
+
+    .typesLoop(@message-types-length);
+  }
+}

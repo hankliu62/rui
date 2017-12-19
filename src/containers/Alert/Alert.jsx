@@ -29,7 +29,6 @@ class AlertContainer extends Component {
 
           <Alert message="Error Text" type="error" />
 
-
           <Alert
             message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
             type="warning"
@@ -45,7 +44,6 @@ class AlertContainer extends Component {
             onClose={this.handleClose}
           />
 
-
           <Alert message="Success Tips" type="success" showIcon />
 
           <Alert message="Informational Notes" type="info" showIcon />
@@ -55,7 +53,7 @@ class AlertContainer extends Component {
           <Alert message="Error" type="error" showIcon />
 
           <Alert
-            message="success tips"
+            message="Success tips"
             description="Detailed description and advices about successful copywriting."
             type="success"
             showIcon

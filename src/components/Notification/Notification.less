@@ -1,0 +1,133 @@
+@import '../../less/variables';
+@import '../../less/mixins/clearfix';
+
+@notification-bg-color: #fff;
+@notification-shadow-color: #ddd;
+@notification-title-color: #343a40;
+@notification-description-color: #676b70;
+@notification-colse-color: rgba(0, 0, 0, .45);
+@notification-colse-hover-color: rgba(0, 0, 0, .65);
+
+@notification-types: success info warning error;
+@notification-type-bg-colors: #ebf8f2 #ecf6fd #fffaeb #fef0ef;
+@notification-type-border-colors: #cfefdf #d2eafb #fff3cf #fcdbd9;
+@notification-type-shadow-colors: #e4f8ef #e0f0fc #fcf4de #fce6e5;
+@notification-type-icon-colors: @success @info @warning @danger;
+
+@notification-types-length: length(@notification-types);
+
+.hlrui-notification {
+  position: fixed;
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  z-index: 1010;
+  width: 384px;
+  max-width: calc(100vw - 32px);
+  margin-right: 24px;
+  border-radius: 4px;
+
+  &.hlrui-notification-bottomLeft,
+  &.hlrui-notification-topLeft {
+    margin-right: 0;
+    margin-left: 24px;
+  }
+
+  .hlrui-notification-notice {
+    background-color: @notification-bg-color;
+    box-shadow: 0 0 10px 0 @notification-shadow-color;
+    border-radius: 4px;
+    position: relative;
+
+    .hlrui-notification-notice-content {
+      padding: 16px 24px;
+
+      .hlrui-notification-notice-message {
+        font-size: 16px;
+        color: @notification-title-color;
+        padding-right: 30px;
+
+        + .hlrui-notification-notice-description {
+          margin-top: 10px;
+        }
+      }
+
+      .hlrui-notification-notice-description {
+        color: @notification-description-color;
+      }
+
+      .hlrui-notification-notice-with-icon {
+        .clearfix();
+
+        .hlrui-notification-notice-icon {
+          font-size: 24px;
+          float: left;
+        }
+
+        .hlrui-notification-notice-message {
+          margin-left: 45px;
+        }
+
+        .hlrui-notification-notice-description {
+          margin-left: 45px;
+        }
+      }
+    }
+
+    .hlrui-notification-notice-close {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+
+      .hlrui-notification-notice-close-x {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0;
+        height: 20px;
+        line-height: 20px;
+
+        &::after {
+          color: @notification-colse-color;
+          content: '×';
+          display: inline-block;
+          font-size: 21px;
+          line-height: 20px;
+        }
+
+        &:hover {
+          &::after {
+            color: @notification-colse-hover-color;
+          }
+        }
+      }
+    }
+
+    + .hlrui-notification-notice {
+      margin-top: 30px;
+    }
+
+    .typesLoop(@n, @i: 1) when (@i =< @n) {
+      @type: extract(@notification-types, @i);
+      @notification-type-bg-color: extract(@notification-type-bg-colors, @i);
+      @notification-type-icon-color: extract(@notification-type-icon-colors, @i);
+      @notification-type-shadow-color: extract(@notification-type-shadow-colors, @i);
+      @notification-type-border-color: extract(@notification-type-border-colors, @i);
+
+      &.hlrui-notification-notice-type-@{type} {
+        background-color: @notification-type-bg-color;
+        box-shadow: 0 0 10px 0 @notification-type-shadow-color;
+        border: 1px solid @notification-type-border-color;
+
+        .hlrui-icon {
+          color: @notification-type-icon-color;
+        }
+      }
+
+      .typesLoop(@n, (@i + 1));
+    }
+
+    .typesLoop(@notification-types-length);
+  }
+}
