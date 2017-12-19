@@ -112,7 +112,7 @@ class Notification {
           <div className={classNames({ 'hlrui-notification-notice-with-icon': icon })}>
             {icon}
             <div className="hlrui-notification-notice-message">{options.message}</div>
-            <div className="hlrui-notification-notice-description">{options.description}</div>
+            {options.description && <div className="hlrui-notification-notice-description">{options.description}</div>}
             {options.btn ? <span className="hlrui-notification-notice-btn">{options.btn}</span> : null}
           </div>
         ),
