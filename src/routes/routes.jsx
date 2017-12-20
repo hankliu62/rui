@@ -38,6 +38,7 @@ const loadTooltipPageAsync = () => import(/* webpackChunkName: 'containers/Toolt
 // feedback module
 const loadAlertPageAsync = () => import(/* webpackChunkName: 'containers/Alert' */ '../containers/Alert/Alert');
 const loadModalPageAsync = () => import(/* webpackChunkName: 'containers/Modal' */ '../containers/Modal/Modal');
+const loadMessagePageAsync = () => import(/* webpackChunkName: 'containers/Message' */ '../containers/Message/Message');
 const loadNotificationPageAsync = () => import(/* webpackChunkName: 'containers/Notification' */ '../containers/Notification/Notification');
 const loadProgressPageAsync = () => import(/* webpackChunkName: 'containers/Progress' */ '../containers/Progress/Progress');
 const loadPopConfirmPageAsync = () => import(/* webpackChunkName: 'containers/PopConfirm' */ '../containers/PopConfirm/PopConfirm');
@@ -89,6 +90,7 @@ const AppRouter = () => {
 
         <BundleWrappingRoute exact path="/feedback/alert" component={Container} load={loadAlertPageAsync} />
         <BundleWrappingRoute exact path="/feedback/modal" component={Container} load={loadModalPageAsync} />
+        <BundleWrappingRoute exact path="/feedback/message" component={Container} load={loadMessagePageAsync} />
         <BundleWrappingRoute exact path="/feedback/notification" component={Container} load={loadNotificationPageAsync} />
         <BundleWrappingRoute exact path="/feedback/progress" component={Container} load={loadProgressPageAsync} />
         <BundleWrappingRoute exact path="/feedback/popconfirm" component={Container} load={loadPopConfirmPageAsync} />

@@ -22,7 +22,7 @@ const getMessageInstance = (callback) => {
 
   ReactNotification.newInstance({
     prefixCls: 'hlrui-message',
-    style: { top: defaultConfig.top },
+    style: { top: defaultConfig.top, left: '50%', transform: 'translateX(-50%)' },
     getContainer: defaultConfig.getContainer
   }, (message) => {
     cacheMessageInstance = message;
@@ -70,7 +70,7 @@ class Message {
         content: (
           <div className={classNames({ 'hlrui-message-notice-with-icon': icon })}>
             {icon}
-            <div className="hlrui-message-notice-message">{options.description}</div>
+            <div className="hlrui-message-notice-message">{options.message}</div>
           </div>
         ),
         duration,

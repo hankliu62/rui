@@ -140,6 +140,17 @@
             display: table !important;
           }
 
+          &.block-row-group {
+            > [class^="hlrui-"] {
+              display: block;
+
+              + [class^="hlrui-"] {
+                margin-left: 0;
+                margin-top: 20px;
+              }
+            }
+          }
+
           > [class^="hlrui-"] {
             display: inline-block;
             vertical-align: middle;

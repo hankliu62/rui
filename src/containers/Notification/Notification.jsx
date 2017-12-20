@@ -4,12 +4,20 @@ import { Notification } from '../../components/Notification';
 import { Button } from '../../components/Button';
 
 class NotificationContainer extends Component {
+  handleShowNotificationWithoutDescription = type => () => {
+    const funcName = type || 'open';
+    Notification.setConfig({ placement: 'topRight' });
+    Notification[funcName]({
+      message: '仰不愧于天，俯不怍于人。'
+    });
+  }
+
   handleShowNotification = type => () => {
     const funcName = type || 'open';
     Notification.setConfig({ placement: 'topRight' });
     Notification[funcName]({
-      message: 'Notification Title',
-      // description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message: '仰不愧于天，俯不怍于人。',
+      description: '仰不愧于天，俯不怍于人是一个汉语词汇，意思是仰起头来看看觉得自己对天无愧，低下头去想想觉得自己不愧于别人。做人要光明磊落，问心无愧。君子坦荡荡。出自《孟子·尽心上》。',
     });
   }
 
@@ -17,8 +25,8 @@ class NotificationContainer extends Component {
     const funcName = type || 'open';
     Notification.setConfig({ placement });
     Notification[funcName]({
-      message: 'Notification Title',
-      description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message: '仰不愧于天，俯不怍于人。',
+      description: '仰不愧于天，俯不怍于人是一个汉语词汇，意思是仰起头来看看觉得自己对天无愧，低下头去想想觉得自己不愧于别人。做人要光明磊落，问心无愧。君子坦荡荡。出自《孟子·尽心上》。',
     });
   }
 
@@ -27,8 +35,8 @@ class NotificationContainer extends Component {
     Notification.setConfig({ placement: 'topRight' });
     Notification[funcName]({
       duration,
-      message: 'Notification Title',
-      description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message: '仰不愧于天，俯不怍于人。',
+      description: '仰不愧于天，俯不怍于人是一个汉语词汇，意思是仰起头来看看觉得自己对天无愧，低下头去想想觉得自己不愧于别人。做人要光明磊落，问心无愧。君子坦荡荡。出自《孟子·尽心上》。',
     });
   }
 
@@ -40,8 +48,20 @@ class NotificationContainer extends Component {
         </header>
 
         <div className="main-page-body" style={{ fontSize: 14 }}>
-          <div style={{ marginBottom: 15 }}>
-            <Button theme="primary" onClick={this.handleShowNotification()}>Open the notification box</Button>
+          <div className="btns-row-group">
+            <Button theme="primary" onClick={this.handleShowNotificationWithoutDescription()}>Without description</Button>
+
+            <Button theme="tblue" onClick={this.handleShowNotificationWithoutDescription('info')}>Without description info</Button>
+
+            <Button theme="tgreen" onClick={this.handleShowNotificationWithoutDescription('success')}>Without description success</Button>
+
+            <Button theme="tyellow" onClick={this.handleShowNotificationWithoutDescription('warning')}>Without description warning</Button>
+
+            <Button theme="tred" onClick={this.handleShowNotificationWithoutDescription('error')}>Without description error</Button>
+          </div>
+
+          <div className="btns-row-group">
+            <Button theme="primary" onClick={this.handleShowNotification()}>With description</Button>
           </div>
 
           <div className="btns-row-group" style={{ marginBottom: 15 }}>

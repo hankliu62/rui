@@ -1,3 +1,92 @@
+@import '../../less/variables';
+@import '../../less/mixins/clearfix';
+
+// card component
+@card-title-color: @title;
+@card-border-color: @border;
+@card-header-bg-color: @white;
+
+// grid component
+@card-grid-border-color: @border;
+@card-grid-hover-shadow-color: #c3c3c3;
+
+// meta component
+@card-meta-content-title-color: @title;
+@card-meta-content-description-color: @content;
+
 .hlrui-card {
-  display: inline-block;
+  .clearfix();
+
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 2px;
+
+  .hlrui-card-header {
+    background-color: @card-header-bg-color;
+    padding: 16px 24px;
+    border-bottom: 1px solid @card-border-color;
+
+    .hlrui-card-header-wrap {
+      display: flex;
+      line-height: 28px;
+
+      .hlrui-card-header-title {
+        color: @card-title-color;
+        font-size: 16px;
+        flex: 1;
+      }
+    }
+  }
+
+  .hlrui-card-body {
+    padding: 24px;
+  }
+
+  &.hlrui-card-border {
+    border: 1px solid @card-border-color;
+  }
+}
+
+.hlrui-card-grid {
+  font-size: 14px;
+  padding: 20px;
+  width: 33.3%;
+  float: left;
+  border: 0;
+  box-shadow: 1px 0 0 0 @card-grid-border-color, 0 1px 0 0 @card-grid-border-color, 1px 0 0 0 @card-grid-border-color inset, 0 1px 0 0 @card-grid-border-color inset;
+
+  &:hover {
+    position: relative;
+    z-index: 1;
+    border: 0;
+    box-shadow: 0 2px 8px 0 @card-grid-hover-shadow-color;
+  }
+}
+
+.hlrui-card-meta {
+  .clearfix();
+
+  .hlrui-card-meta-avatar {
+    float: left;
+    margin-right: 20px;
+  }
+
+  .hlrui-card-meta-content {
+    margin-left: 56px;
+
+    .hlrui-card-meta-content-title {
+      font-size: 16px;
+      color: @card-meta-content-title-color;
+      font-weight: bold;
+
+      + .hlrui-card-meta-content-description {
+        margin-top: 10px;
+      }
+    }
+
+    .hlrui-card-meta-content-description {
+      font-size: 14px;
+      color: @card-meta-content-description-color;
+    }
+  }
 }

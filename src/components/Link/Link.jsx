@@ -12,6 +12,7 @@ class Link extends PureComponent {
     className: PropTypes.string,
     size: PropTypes.oneOf(['large', 'default', 'small']),
     theme: PropTypes.string,
+    underline: PropTypes.bool,
     disabled: PropTypes.bool
   }
 
@@ -27,7 +28,7 @@ class Link extends PureComponent {
   }
 
   render() {
-    const { className, children, theme, disabled, ...others } = this.props;
+    const { className, theme, underline, disabled, children, ...others } = this.props;
 
     const sizeName = this.getSizeName();
 
@@ -39,6 +40,7 @@ class Link extends PureComponent {
         className={classNames('hlrui-link', {
           [`hlrui-link-size-${sizeName}`]: sizeName,
           [`hlrui-link-theme-${theme}`]: theme,
+          'hlrui-link-underline': underline,
           [className]: className,
           disabled
         })}
