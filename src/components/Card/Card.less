@@ -5,6 +5,8 @@
 @card-title-color: @title;
 @card-border-color: @border;
 @card-header-bg-color: @white;
+@card-body-bg-color: @white;
+@card-hover-shadow-color: #c3c3c3;
 
 // grid component
 @card-grid-border-color: @border;
@@ -20,6 +22,7 @@
   font-size: 14px;
   line-height: 1.5;
   border-radius: 2px;
+  transition: all .3s;
 
   .hlrui-card-header {
     background-color: @card-header-bg-color;
@@ -32,6 +35,7 @@
 
       .hlrui-card-header-title {
         color: @card-title-color;
+        font-weight: bold;
         font-size: 16px;
         flex: 1;
       }
@@ -40,10 +44,28 @@
 
   .hlrui-card-body {
     padding: 24px;
+    background-color: @card-body-bg-color;
+  }
+
+  &.hlrui-card-hover {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 2px 8px @card-hover-shadow-color;
+    }
   }
 
   &.hlrui-card-border {
     border: 1px solid @card-border-color;
+  }
+
+  &.hlrui-card-with-cover {
+    .hlrui-card-cover {
+      > * {
+        width: 100%;
+        display: block;
+      }
+    }
   }
 }
 
@@ -54,6 +76,7 @@
   float: left;
   border: 0;
   box-shadow: 1px 0 0 0 @card-grid-border-color, 0 1px 0 0 @card-grid-border-color, 1px 0 0 0 @card-grid-border-color inset, 0 1px 0 0 @card-grid-border-color inset;
+  transition: all .3s;
 
   &:hover {
     position: relative;
@@ -72,8 +95,6 @@
   }
 
   .hlrui-card-meta-content {
-    margin-left: 56px;
-
     .hlrui-card-meta-content-title {
       font-size: 16px;
       color: @card-meta-content-title-color;
@@ -87,6 +108,12 @@
     .hlrui-card-meta-content-description {
       font-size: 14px;
       color: @card-meta-content-description-color;
+    }
+  }
+
+  &.hlrui-card-meta-with-avatar {
+    .hlrui-card-meta-content {
+      margin-left: 56px;
     }
   }
 }
