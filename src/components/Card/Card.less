@@ -7,6 +7,10 @@
 @card-header-bg-color: @white;
 @card-body-bg-color: @white;
 @card-hover-shadow-color: #c3c3c3;
+@card-actions-color: @content;
+@card-actions-border-color: @border;
+@card-actions-bg-color: #fafafa;
+@card-actions-hover-color: #1890ff;
 
 // grid component
 @card-grid-border-color: @border;
@@ -43,8 +47,39 @@
   }
 
   .hlrui-card-body {
+    .clearfix();
+
     padding: 24px;
     background-color: @card-body-bg-color;
+  }
+
+  .hlrui-card-actions {
+    font-size: 0;
+    background-color: @card-actions-bg-color;
+    border-top: 1px solid @card-actions-border-color;
+
+    .hlrui-card-actions-item {
+      margin: 15px 0;
+      font-size: 14px;
+      display: inline-block;
+      text-align: center;
+
+      .hlrui-card-actions-item-wrap {
+        color: @card-actions-color;
+        cursor: pointer;
+        display: inline-block;
+        min-width: 32px;
+        transition: color .3s;
+
+        &:hover {
+          color: @card-actions-hover-color;
+        }
+      }
+
+      + .hlrui-card-actions-item {
+        border-left: 1px solid @card-actions-border-color;
+      }
+    }
   }
 
   &.hlrui-card-hover {

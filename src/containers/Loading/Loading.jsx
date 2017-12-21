@@ -21,8 +21,16 @@ class LoadingContainer extends Component {
 
         <div className="main-page-body">
 
-          <div className="loadings-row-group">
+          <div className="loadings-row-group" style={{ width: 620 }}>
             <SkeletonScreenLoading height={this.state.loading} />
+          </div>
+
+          <div className="loadings-row-group" style={{ width: 620 }}>
+            <SkeletonScreenLoading height="40" randomable={false} />
+          </div>
+
+          <div className="loadings-row-group" style={{ width: 620 }}>
+            <SkeletonScreenLoading height="100" row={3} />
           </div>
 
           <div className="loadings-row-group">
