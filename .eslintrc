@@ -101,6 +101,7 @@
     "localStorage": true,
     "location": true,
     "arguments": true,
-    "particlesJS": true
+    "particlesJS": true,
+    "$": true
   }
 }

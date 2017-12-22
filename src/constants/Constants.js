@@ -90,11 +90,15 @@ export const MENUS = [
       },
       {
         key: '/form/time-picker',
-        title: 'Time Picker 时间选择器'
+        title: 'TimePicker 时间选择器'
       },
       {
         key: '/form/date-picker',
         title: 'DatePicker 日期选择器'
+      },
+      {
+        key: '/form/location',
+        title: 'Location 地址级联'
       },
       {
         key: '/form/dropzone',

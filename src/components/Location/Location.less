@@ -1,13 +1,22 @@
 .hk-location {
+  .hk-selector {
+    width: 180px;
+  }
+
   .hk-location-column {
-    display: inline-block;
-
-    .hk-selector {
-      width: 180px;
-    }
-
     + .hk-location-column {
-      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+
+  &.hk-location-horizontal {
+    .hk-location-column {
+      display: inline-block;
+
+      + .hk-location-column {
+        margin-top: 0;
+        margin-left: 20px;
+      }
     }
   }
 }

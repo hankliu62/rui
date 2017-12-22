@@ -1,0 +1,36 @@
+@import '../../less/variables';
+
+@hlrui-timepicker-btn-primary-color: @white;
+@hlrui-timepicker-btn-primary-bg-color: #1890ff;
+@hlrui-timepicker-btn-primary-border-color: #1890ff;
+@hlrui-timepicker-btn-primary-focus-bg-color: #40a9ff;
+@hlrui-timepicker-btn-primary-focus-border-color: #40a9ff;
+@hlrui-timepicker-btn-primary-shadow-color: rgba(24, 144, 255, .5);
+
+.hlrui-timepicker {
+  display: inline-block;
+}
+
+.clockpicker-popover {
+  padding: 0 !important;
+
+  .clockpicker-button {
+    color: @hlrui-timepicker-btn-primary-color;
+    border-color: @hlrui-timepicker-btn-primary-border-color;
+    background-color: @hlrui-timepicker-btn-primary-bg-color;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: @hlrui-timepicker-btn-primary-color;
+      border-color: @hlrui-timepicker-btn-primary-focus-border-color;
+      background-color: @hlrui-timepicker-btn-primary-focus-bg-color;
+    }
+
+    &:active {
+      box-shadow: 0 0 8px @hlrui-timepicker-btn-primary-shadow-color;
+    }
+  }
+}

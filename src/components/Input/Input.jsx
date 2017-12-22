@@ -18,11 +18,13 @@ class Input extends PureComponent {
     addonAfter: PropTypes.node,
     prefix: PropTypes.node,
     suffix: PropTypes.node,
+    bindRef: PropTypes.func
   }
 
   static defaultProps = {
     disabled: false,
-    style: {}
+    style: {},
+    bindRef: () => {}
   }
 
   constructor(props) {
@@ -153,7 +155,7 @@ class Input extends PureComponent {
   }
 
   renderInput = () => {
-    const { className, size, ...others } = this.props;
+    const { className, size, bindRef, ...others } = this.props;
 
     delete (others.size);
     delete (others.addonBefore);
@@ -167,6 +169,7 @@ class Input extends PureComponent {
         className={classNames(this.getInputClassName(), {
           [className]: className
         })}
+        ref={bindRef}
         onFocus={this.handleFocusInput}
         onBlur={this.handleBlurInput}
       />

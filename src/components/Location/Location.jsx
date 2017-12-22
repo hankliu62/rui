@@ -6,8 +6,11 @@ import Selector from '../Selector/Selector';
 import { RestUtilInstance } from '../../utils/RestUtil';
 import * as API from '../../constants/Api';
 
+import './Location.less';
+
 class Location extends Component {
     static propTypes = {
+      className: PropTypes.string,
       province: PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string
@@ -20,8 +23,9 @@ class Location extends Component {
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string
       }),
+      direction: PropTypes.oneOf(['horizontal', 'vertical']),
       validating: PropTypes.bool, // 是否验证location值得有效性
-      // static: PropTypes.bool,
+      isStatic: PropTypes.bool,
       // required: PropTypes.bool,
       onFetchProvinces: PropTypes.func,
       onFetchCities: PropTypes.func,
@@ -35,8 +39,8 @@ class Location extends Component {
       province: {},
       city: {},
       district: {},
-      static: false,
-      hasCode: false,
+      direction: 'horizontal',
+      isStatic: false,
       onChangeLocation: () => {},
       onError: obj => alert(obj.message),
       onSetState: () => {}
@@ -91,8 +95,16 @@ class Location extends Component {
     }
 
     fetchProvinces = () => {
+      const { isStatic } = this.props;
       return new Promise((resolve, reject) => {
-        RestUtilInstance.Get(API.API_FETCH_DISTRICTS).then((data) => {
+        let getProvincesPromise;
+        if (isStatic) {
+          const regions = require('./json/regions.json');
+          getProvincesPromise = Promise.resolve({ data: regions.map(item => ({ name: item.name, id: item.code })) });
+        } else {
+          getProvincesPromise = RestUtilInstance.Get(API.API_FETCH_PROVINCES);
+        }
+        getProvincesPromise.then((data) => {
           resolve(data.data || []);
         }, () => {
           this.props.onError({
@@ -106,10 +118,19 @@ class Location extends Component {
 
     fetchCities = (provinceId) => {
       return new Promise((resolve, reject) => {
-        RestUtilInstance.Get(API.API_FETCH_CITIES, { provinceId }).then((data) => {
+        const { isStatic } = this.props;
+        let getCitiesPromise;
+        if (isStatic) {
+          const regions = require('./json/regions.json');
+          const staticCities = (regions.find(item => item.code === provinceId) || { c: [] }).c;
+          getCitiesPromise = Promise.resolve({ data: staticCities.map(item => ({ cityName: item.name, cityId: item.code })) });
+        } else {
+          getCitiesPromise = RestUtilInstance.Get(API.API_FETCH_CITIES, { provinceId });
+        }
+        getCitiesPromise.then((data) => {
           const cities = [];
-          for (const city of (data.data.dataList || [])) {
-            cities.push({ id: city.cityId, name: city.cityName, shouzimu: city.shouzimu });
+          for (const city of (data.data || [])) {
+            cities.push({ id: city.cityId, name: city.cityName });
           }
           resolve(cities);
         }, () => {
@@ -124,8 +145,18 @@ class Location extends Component {
 
     fetchDistricts = (provinceId, cityId) => {
       return new Promise((resolve, reject) => {
-        RestUtilInstance.Get(API.API_FETCH_DISTRICTS, { provinceId, cityId }).then((data) => {
-          resolve(data.data.dataList || []);
+        const { isStatic } = this.props;
+        let getDistrictsPromise;
+        if (isStatic) {
+          const regions = require('./json/regions.json');
+          const staticCities = (regions.find(item => item.code === provinceId) || { c: [] }).c;
+          const staticDistricts = (staticCities.find(item => item.code === cityId) || { c: [] }).c;
+          getDistrictsPromise = Promise.resolve({ data: staticDistricts.map(item => ({ name: item.name, id: item.code })) });
+        } else {
+          getDistrictsPromise = RestUtilInstance.Get(API.API_FETCH_DISTRICTS, { provinceId, cityId });
+        }
+        getDistrictsPromise.then((data) => {
+          resolve(data.data || []);
         }, () => {
           this.props.onError({
             status: 'error',
@@ -252,7 +283,6 @@ class Location extends Component {
       for (const city of (cities || [])) {
         citiesCacheData[city.id] = {
           name: city.name,
-          shouzimu: city.shouzimu,
           districts: {}
         };
         items.push({ ...city });
@@ -280,14 +310,14 @@ class Location extends Component {
       const city = this.props.city || {};
       const district = this.props.district || {};
       const { provinces, cities, districts } = this.state;
-      const { validating } = this.props;
+      const { className, direction, validating } = this.props;
 
       const isProvinceValid = this.validateProvince();
       const isCityValid = this.validateCity();
       const isDistrictValid = this.validateDistrict();
 
       return (
-        <div className="hk-location">
+        <div className={classNames('hk-location', `hk-location-${direction}`, { [className]: className, })}>
           <div className="hk-location-column hk-location-provinces">
             <Selector
               className={classNames('hk-form-control', { error: !!validating && !isProvinceValid })}

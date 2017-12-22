@@ -24,6 +24,8 @@ const loadCheckboxPageAsync = () => import(/* webpackChunkName: 'containers/Chec
 const loadSelectorPageAsync = () => import(/* webpackChunkName: 'containers/Selector' */ '../containers/Selector/Selector');
 const loadSwitchPageAsync = () => import(/* webpackChunkName: 'containers/Switch' */ '../containers/Switch/Switch');
 const loadInputPageAsync = () => import(/* webpackChunkName: 'containers/Input' */ '../containers/Input/Input');
+const loadTimePickerPageAsync = () => import(/* webpackChunkName: 'containers/TimePicker' */ '../containers/TimePicker/TimePicker');
+const loadLocationPageAsync = () => import(/* webpackChunkName: 'containers/Location' */ '../containers/Location/Location');
 const loadDropzonePageAsync = () => import(/* webpackChunkName: 'containers/Dropzone' */ '../containers/Dropzone/Dropzone');
 
 // data module
@@ -78,6 +80,8 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/form/select" component={Container} load={loadSelectorPageAsync} />
         <BundleWrappingRoute exact path="/form/switch" component={Container} load={loadSwitchPageAsync} />
         <BundleWrappingRoute exact path="/form/input" component={Container} load={loadInputPageAsync} />
+        <BundleWrappingRoute exact path="/form/time-picker" component={Container} load={loadTimePickerPageAsync} />
+        <BundleWrappingRoute exact path="/form/location" component={Container} load={loadLocationPageAsync} />
         <BundleWrappingRoute exact path="/form/dropzone" component={Container} load={loadDropzonePageAsync} />
 
         <BundleWrappingRoute exact path="/data/avatar" component={Container} load={loadAvatarPageAsync} />

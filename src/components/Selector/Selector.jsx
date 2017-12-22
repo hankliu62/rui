@@ -50,7 +50,7 @@ class Selector extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { value, labelField, valueField, options = [] } = nextProps;
-    if (this.props.value !== value) {
+    if (this.props.value !== value || JSON.stringify(options) !== JSON.stringify(this.props.options)) {
       const selectedOption = options.find(option => option[valueField] === value);
 
       this.setState({ selectedOptionLabel: selectedOption ? selectedOption[labelField] : '' });

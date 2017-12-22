@@ -1,5 +1,6 @@
 import systemConfig from 'systemConfig';
 import isEmpty from 'lodash/isEmpty';
+import { Message } from '../components/Message';
 
 class RestUtil {
   constructor(options) {
@@ -56,7 +57,10 @@ class RestUtil {
     return fetch(url, { method }).then((response) => {
       return Promise.resolve(response.json());
     }).catch((ex) => {
-      alert(`fetch failed, url: ${url}; method: ${method}`);
+      Message.error({
+        duration: 2,
+        message: `fetch failed, url: ${url}; method: ${method}`
+      });
       console.log('parsing failed', ex);
     });
   }
