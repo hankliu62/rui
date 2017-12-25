@@ -1,5 +1,6 @@
 @import '../../less/variables';
 
+@hlrui-timepicker-color: @border;
 @hlrui-timepicker-btn-primary-color: @white;
 @hlrui-timepicker-btn-primary-bg-color: #1890ff;
 @hlrui-timepicker-btn-primary-border-color: #1890ff;
@@ -13,6 +14,16 @@
 
 .clockpicker-popover {
   padding: 0 !important;
+
+  &.popover {
+    border-color: @hlrui-timepicker-color;
+
+    &.bottom {
+      > .arrow {
+        border-bottom-color: @hlrui-timepicker-color;
+      }
+    }
+  }
 
   .clockpicker-button {
     color: @hlrui-timepicker-btn-primary-color;

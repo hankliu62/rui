@@ -135,6 +135,10 @@ export const MENUS = [
         title: 'Card 卡片'
       },
       {
+        key: '/data/list',
+        title: 'List 列表'
+      },
+      {
         key: '/data/rate',
         title: 'Rate 评分'
       },
