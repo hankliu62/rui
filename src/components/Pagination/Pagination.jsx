@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { Selector } from '../Selector';
 import { Icon } from '../Icon';
+import { Button } from '../Button';
 
 import './Pagination.less';
 
@@ -14,6 +15,7 @@ class Pagination extends Component {
       currentPage: PropTypes.number,
       showQuickBtn: PropTypes.bool, // 是否显示跳转快捷按钮和输入框
       showPageSize: PropTypes.bool, // 是否显示跳转快捷按钮和输入框
+      theme: PropTypes.string, // 主题
       onChangePage: PropTypes.func.isRequired, // 页码改变回调，接收新的页码参数goto
       onChangeSize: PropTypes.func.isRequired // 页码改变回调，接收新的页码参数goto
     }
@@ -22,7 +24,8 @@ class Pagination extends Component {
       pageSize: 10,
       currentPage: 1,
       showQuickBtn: true,
-      showPageSize: false
+      showPageSize: false,
+      theme: 'tred'
     }
 
     constructor(props) {
@@ -142,18 +145,18 @@ class Pagination extends Component {
     }
 
     render() {
-      const { totalRows, pageSize, currentPage, showQuickBtn, showPageSize } = this.props;
+      const { totalRows, pageSize, currentPage, showQuickBtn, showPageSize, theme } = this.props;
 
       if (totalRows <= 0) {
         return null;
       }
 
       const pageNumbers = this.getPageNumbers();
-      const startIndex = (currentPage * pageSize) + 1;
-      const endIndex = (currentPage + 1) * pageSize > totalRows ? totalRows : (currentPage + 1) * pageSize;
+      const startIndex = ((currentPage - 1) * pageSize) + 1;
+      const endIndex = currentPage * pageSize > totalRows ? totalRows : currentPage * pageSize;
 
       return (
-        <div className={classNames('hlrui-pagination', { 'no-pagesize-selector': !showPageSize })}>
+        <div className={classNames('hlrui-pagination', { 'no-pagesize-selector': !showPageSize, [`hlrui-pagination-theme-${theme}`]: theme })}>
           <div className="hlrui-pagination-statistics">
             <span className={classNames('statistics-text', { hidden: !showPageSize })}>显示第</span>
             <span className={classNames('statistics-number', { hidden: !showPageSize })}> { startIndex } </span>
@@ -185,7 +188,7 @@ class Pagination extends Component {
               {
                 pageNumbers.map((item, index) => (
                   <li
-                    key={index}
+                    key={item === '...' ? `${item}${index}` : item}
                     className={classNames('btn-pagination btn-index', { active: item === currentPage, 'btn-page-expand': item === '...' })}
                     onClick={() => this.handleClickPageIndex(item)}
                   >
@@ -211,7 +214,7 @@ class Pagination extends Component {
                   value={this.state.cPage}
                   onChange={e => this.setState({ cPage: e.target.value })}
                 />
-                <a className="hlrui-btn hlrui-btn-tred hlrui-btn-quick" onClick={this.handleClickQuick}>跳 转</a>
+                <Button theme={theme} className="hlrui-btn-quick" onClick={this.handleClickQuick}>跳 转</Button>
               </div>
             }
           </div>

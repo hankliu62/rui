@@ -1,25 +1,29 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import ListItem from './ListItem';
+import Item from './Item';
+import { Icon } from '../Icon';
 import GetSizeName from '../../decorators/GetSizeName';
 
 import './List.less';
 
 @GetSizeName
-class List extends PureComponent {
+class List extends Component {
   static propTypes = {
+    size: PropTypes.string,
     bordered: PropTypes.bool,
+    loading: PropTypes.bool,
     header: PropTypes.node,
     footer: PropTypes.node,
+    loadMore: PropTypes.node,
     dataSource: PropTypes.array,
-    pagination: PropTypes.object,
     itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     renderItem: PropTypes.func
   }
 
   static defaultProps = {
+    size: 'default',
     itemKey: 'key'
   }
 
@@ -27,6 +31,16 @@ class List extends PureComponent {
     super(props);
 
     this.getSizeName = this.getSizeName.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { size, bordered, dataSource, itemKey, loading } = nextProps;
+    if (size !== this.props.size || bordered !== this.props.bordered || itemKey !== this.props.itemKey || loading !== this.props.loading ||
+        JSON.stringify(dataSource) !== JSON.stringify(this.props.dataSource)) {
+      return true;
+    }
+
+    return false;
   }
 
   renderItem = (data, index) => {
@@ -46,16 +60,23 @@ class List extends PureComponent {
     }
 
     return (
-      <ListItem key={key}>
+      <Item key={key}>
         { Object.prototype.toString.call(data).slice(8, -1) === 'Object' ? data.text : data }
-      </ListItem>
+      </Item>
     );
   }
 
   render() {
-    const { className, bordered, header, footer, dataSource, direction, renderItem, ...others } = this.props;
+    const { className, bordered, header, footer, dataSource, direction, renderItem, loadMore, loading, ...others } = this.props;
 
     const sizeName = this.getSizeName();
+
+    const content = loadMore && dataSource && !!dataSource.length ? (
+      <div className="hlrui-list-load-wrap">
+        {loading && <Icon type="spinner" className="spinning" size="3x" />}
+        {!loading && loadMore}
+      </div>
+    ) : null;
 
     delete (others.size);
     delete (others.itemKey);
@@ -66,14 +87,17 @@ class List extends PureComponent {
         className={classNames('hlrui-list', {
           [className]: className,
           [`hlrui-list-size-${sizeName}`]: sizeName,
-          'hlrui-list-size-border': bordered
+          'hlrui-list-size-border': bordered,
+          'hlrui-list-size-with-load-more': loadMore,
+          'hlrui-list-size-loading': loading,
         })}
       >
-        { header && <div className="hlrui-list-item hlrui-list-item-header">{header}</div> }
+        { header && <div className="hlrui-list-item-header">{header}</div> }
         {
           dataSource && dataSource.map(this.renderItem)
         }
-        { footer && <div className="hlrui-list-item hlrui-list-item-footer">{footer}</div> }
+        {content}
+        { footer && <div className="hlrui-list-item-footer">{footer}</div> }
       </div>
     );
   }

@@ -28,13 +28,74 @@ class PaginationContainer extends Component {
         </header>
 
         <div className="main-page-body">
-          <Pagination
-            totalRows={111}
-            pageSize={this.state.pageSize}
-            currentPage={this.state.currentPage}
-            onChangePage={this.handleChangePage}
-            onChangeSize={this.handleChangeSize}
-          />
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+              showPageSize
+            />
+          </div>
+
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              theme="primary"
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+              showPageSize
+            />
+          </div>
+
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              theme="tblue"
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+              showPageSize
+            />
+          </div>
+
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              theme="tyellow"
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+              showPageSize
+            />
+          </div>
+
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              theme="tgreen"
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+              showPageSize
+            />
+          </div>
+
+          <div className="pagination-row-group block-row-group">
+            <Pagination
+              totalRows={111}
+              pageSize={this.state.pageSize}
+              currentPage={this.state.currentPage}
+              onChangePage={this.handleChangePage}
+              onChangeSize={this.handleChangeSize}
+            />
+          </div>
         </div>
       </div>
     );

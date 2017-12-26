@@ -1,5 +1,5 @@
 import List from './List';
-import ListItem from './ListItem';
+import ListItem from './Item';
 import ListMeta from './Meta';
 
 ListItem.Meta = ListMeta;
