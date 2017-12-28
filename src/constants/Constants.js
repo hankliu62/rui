@@ -147,6 +147,10 @@ export const MENUS = [
         title: 'Table 表格'
       },
       {
+        key: '/data/tabs',
+        title: 'Tabs 标签页'
+      },
+      {
         key: '/data/tag',
         title: 'Tag 标签'
       },

@@ -35,6 +35,7 @@ const loadCardPageAsync = () => import(/* webpackChunkName: 'containers/Card' */
 const loadRatePageAsync = () => import(/* webpackChunkName: 'containers/Rate' */ '../containers/Rate/Rate');
 const loadListPageAsync = () => import(/* webpackChunkName: 'containers/List' */ '../containers/List/List');
 const loadTablePageAsync = () => import(/* webpackChunkName: 'containers/Table' */ '../containers/Table/Table');
+const loadTabsPageAsync = () => import(/* webpackChunkName: 'containers/Tabs' */ '../containers/Tabs/Tabs');
 const loadTimelinePageAsync = () => import(/* webpackChunkName: 'containers/Timeline' */ '../containers/Timeline/Timeline');
 const loadTooltipPageAsync = () => import(/* webpackChunkName: 'containers/Tooltip' */ '../containers/Tooltip/Tooltip');
 
@@ -91,6 +92,7 @@ const AppRouter = () => {
         <BundleWrappingRoute exact path="/data/rate" component={Container} load={loadRatePageAsync} />
         <BundleWrappingRoute exact path="/data/list" component={Container} load={loadListPageAsync} />
         <BundleWrappingRoute exact path="/data/table" component={Container} load={loadTablePageAsync} />
+        <BundleWrappingRoute exact path="/data/tabs" component={Container} load={loadTabsPageAsync} />
         <BundleWrappingRoute exact path="/data/timeline" component={Container} load={loadTimelinePageAsync} />
         <BundleWrappingRoute exact path="/data/tooltip" component={Container} load={loadTooltipPageAsync} />
 
