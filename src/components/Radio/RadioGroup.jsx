@@ -34,14 +34,14 @@ class RadioGroup extends Component {
   }
 
   render() {
-    const { className, block, disabled, options, value } = this.props;
+    const { className, block, disabled, options, value, ...others } = this.props;
 
     if (!options || !options.length) {
       return null;
     }
 
     return (
-      <div className={classNames('hlrui-radio-group', { [className]: !!className, 'hlrui-radio-group-block': block })}>
+      <div className={classNames('hlrui-radio-group', { [className]: !!className, 'hlrui-radio-group-block': block })} {...others}>
         {
           options.map(option => (
             <Radio

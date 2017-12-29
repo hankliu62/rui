@@ -14,6 +14,8 @@
 @sidebar-toggle-hover-bg-color: #ddd;
 @sidebar-toggle-hover-border-color: #ddd;
 
+@block-row-group-border-color: #ddd;
+
 @header-height: 62px;
 
 .main-container {
@@ -143,6 +145,10 @@
           }
 
           &.block-row-group {
+            padding: 50px 20px;
+            border: 1px solid @block-row-group-border-color;
+            border-radius: 4px;
+
             > [class^="hlrui-"] {
               display: block;
 

@@ -24,7 +24,7 @@ class Tabs extends PureComponent {
     size: PropTypes.oneOf(CONSTANTS_TABS_SIZES),
     tabBarExtraContent: PropTypes.node,
     tabBarStyle: PropTypes.object,
-    hideAdd: PropTypes.bool,
+    showAdd: PropTypes.bool,
     animated: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
       inkBar: PropTypes.bool,
       tabPane: PropTypes.bool
@@ -38,7 +38,8 @@ class Tabs extends PureComponent {
 
   static defaultProps = {
     type: 'line',
-    hideAdd: false
+    showAdd: false,
+    onChange: () => {}
   };
 
   constructor(props) {
@@ -47,24 +48,72 @@ class Tabs extends PureComponent {
     this.getSizeName = this.getSizeName.bind(this);
   }
 
+  onRemoveTab = key => (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    if (!key) {
+      return;
+    }
+
+    if (this.props.onEdit) {
+      this.props.onEdit(key, 'remove');
+    }
+  }
+
+  onCreateTab = () => {
+    if (this.props.onEdit) {
+      this.props.onEdit(undefined, 'add');
+    }
+  }
+
   render() {
-    const { className, activeKey, defaultActiveKey, type, tabPosition, size, tabBarExtraContent,
-      tabBarStyle, hideAdd, animated = true, onChange, onTabClick, onPrevClick, onNextClick, onEdit, children, ...others } = this.props;
+    const { className, type, tabPosition, size, tabBarExtraContent,
+      tabBarStyle, showAdd, animated = true, onChange, onTabClick, onPrevClick, onNextClick, onEdit, children, ...others } = this.props;
 
     const { inkBar: inkBarAnimated, tabPane } = typeof (animated) === 'object' ? animated : { inkBar: !!animated, tabPane: !!animated };
     // card tabs animated props init value is false
     const tabPaneAnimated = type !== 'line' && !('animated' in this.props) ? false : tabPane;
 
+    let extraContent = tabBarExtraContent;
+    if (showAdd) {
+      extraContent = (
+        <span className="hlrui-tabs-extra-wrap">
+          <span className="hlrui-tabs-new-tab" onClick={this.onCreateTab}>
+            <span>&times;</span>
+          </span>
+          {tabBarExtraContent && tabBarExtraContent}
+        </span>
+      );
+    }
+
     const renderTabBar = () => (
       <ScrollableInkTabBar
         inkBarAnimated={inkBarAnimated}
-        extraContent={tabBarExtraContent}
+        extraContent={extraContent}
         onTabClick={onTabClick}
         onPrevClick={onPrevClick}
         onNextClick={onNextClick}
         style={tabBarStyle}
       />
     );
+
+    const childrenWithClose = [];
+    if (type === 'editable-card') {
+      React.Children.forEach(children, (child, index) => {
+        const closable = 'closable' in child.props && typeof (child.props.closable) === 'boolean' ? child.props.closable : true;
+        const closeNode = closable ? (<span className="hlrui-tab-close" onClick={this.onRemoveTab(child.key)}>&times;</span>) : null;
+        childrenWithClose.push(React.cloneElement(child, {
+          tab: (
+            <div className={classNames({ 'hlrui-tabs-tab-without-closeicon': !closable, 'hlrui-tabs-tab-with-closeicon': closable })}>
+              {child.props.tab}{closeNode}
+            </div>
+          ),
+          key: child.key || index
+        }));
+      });
+    }
 
     const sizeName = this.getSizeName();
 
@@ -82,9 +131,9 @@ class Tabs extends PureComponent {
         tabBarPosition={tabPosition}
         renderTabBar={renderTabBar}
         renderTabContent={() => <TabContent animated={tabPaneAnimated} animatedWithMargin />}
-        onChange={this.handleChange}
+        onChange={onChange}
       >
-        {children}
+        {type === 'editable-card' ? childrenWithClose : children}
       </ReactTabs>
     );
   }
