@@ -5,7 +5,8 @@
   "description": "practice react ui components",
   "main": "server.js",
   "scripts": {
-    "start": "better-npm-run start",
+    "start": "npm-run-all prod:dll prod:build prod:server",
+    "prod:server": "better-npm-run start",
     "dev": "npm-run-all dev:build",
     "prod": "npm-run-all prod:build",
     "dll": "npm-run-all dev:dll prod:dll",
