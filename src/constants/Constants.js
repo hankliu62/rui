@@ -123,16 +123,16 @@ export const MENUS = [
         title: 'Calendar 日历'
       },
       {
+        key: '/data/card',
+        title: 'Card 卡片'
+      },
+      {
         key: '/data/carousel',
         title: 'Carousel 走马灯'
       },
       {
         key: '/data/collapse',
         title: 'Collapse 折叠面板'
-      },
-      {
-        key: '/data/card',
-        title: 'Card 卡片'
       },
       {
         key: '/data/list',
